@@ -3,25 +3,25 @@
         <div class="header-nav">
             <a
             href=""
-            class="header-nav_logo"
+            class="header-nav__logo"
             id="nav-logo"
             >
-                <svg class="header-nav_icon" width="24" height="24">
+                <svg class="header-nav__icon" width="24" height="24">
                     <use href="./images/sprite.svg#film_logo"></use>
                 </svg>
-                <h1 class="header-nav_h1">Filmoteka</h1>
+                <h1 class="header-nav__title">Filmoteka</h1>
             </a>
-            <ul class="header-nav_list">
-                <li class="header-nav_list-item">
+            <ul class="header-nav__list">
+                <li class="header-nav__list-item">
                     <a 
                     href=""
-                    class="header-nav_list-item-link current"
+                    class="header-nav__list-item-link current"
                     id="home-page">Home</a>
                 </li>
-                <li class="header-nav_list-item">
+                <li class="header-nav__list-item">
                     <a
                     href=""
-                    class="header-nav_list-item-link library"
+                    class="header-nav__list-item-link library"
                     id="library-page">My library</a>
                 </li>
             </ul>
@@ -30,35 +30,35 @@
         <div>
             <form
             action=""
-            class="search-film-form"
+            class="search-film__form"
             id="search-form"
             autocomplete="off"
             >
-            <div class="search-film-input">
+            <div class="search-film__input">
                 <input
-                type="submit"
+                type="text"
                 name="search"
                 placeholder="Поиск фильмов"
                 class="input input__form"
                 />
-                <button class="input-btn">
-                    <svg class="input-btn-icon" width="12" height="12">
+                <button class="input__btn">
+                    <svg class="input__btn-icon" width="12" height="12">
                         <use href="./images/sprite.svg#search"></use>
                     </svg>
                 </button>
             </div>
-            <div class="search-film-notifications">
-                <p class="search-film-errors is-hidden">
+            <div class="search-film__notifications">
+                <p class="search-film__errors visually-hidden">
                 Search result not successful. Enter the correct movie name
                 </p>
             </div>
             </form>
         </div>
-        <div class="library-navigation">
-            <button type="button" class="watched-show-btn is-hidden orange">
+        <div class="library__navigation">
+            <button type="button" class="watched-show-btn visually-hidden">
             Watched
             </button>
-            <button type="button" class="queue-show-btn is-hidden">Queue</button>
+            <button type="button" class="queue-show-btn visually-hidden">Queue</button>
         </div>
     </div>
 </header>
