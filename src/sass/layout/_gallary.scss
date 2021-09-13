@@ -1,0 +1,13 @@
+.movi-card {
+background-color: $cards-bg-colour;
+font-weight: 500;
+font: size 12px;
+line-height: 1.17;
+  &__title {
+  text-transform: uppercase;
+  }
+  &__fetures {
+      color:$accent-color;
+      
+  }
+}
