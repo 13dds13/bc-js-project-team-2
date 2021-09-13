@@ -4,7 +4,7 @@ async function getMovieData() {
 
   try {
     const {results: data} = await api.fetchMovieByInput();
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.log('error')
   }
