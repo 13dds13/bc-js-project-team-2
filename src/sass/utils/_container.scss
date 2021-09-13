@@ -1,0 +1,24 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @include for-phone {
+    max-width: 280px;
+    padding-left: 10px;
+  padding-right: 10px;
+  }
+
+  @include for-tablet {
+    max-width: 618px;
+      padding-left: 15px;
+  padding-right: 15px;
+  }
+
+  @include for-desktop {
+    max-width: 882px;
+      padding-left: 15px;
+  padding-right: 15px;
+  }
+}
