@@ -1,0 +1,38 @@
+.footer {
+  background-color: $footer-bgc;
+  padding-top: 30px;
+  padding-bottom: 28px;
+
+  &__text {
+    color: $footer-text-colour;
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 1.17;
+    text-align: center;
+    @include for-tablet {
+      font-size: 16px;
+      line-height: 1.19;
+    }
+    span {
+      display: block;
+      margin-bottom: 10px;
+      @include for-tablet {
+        display: inline;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.footer__icon {
+  fill: $accent-color;
+  width: 14px;
+  height: 13px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.footer__text a {
+  text-decoration: underline;
+}
