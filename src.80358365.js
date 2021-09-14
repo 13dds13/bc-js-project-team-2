@@ -19,4 +19,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"../services/api":"nuEX","../../templates/renderMovieForModal.hbs":"nInQ"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/fetchMovieByInput.js"),require("./js/components/fetchMovieByTrending.js"),require("./js/components/fetchMovieForModal");
 },{"./sass/main.scss":"clu1","./js/components/fetchMovieByInput.js":"tDvy","./js/components/fetchMovieByTrending.js":"gKZd","./js/components/fetchMovieForModal":"U2uj"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.3037e57a.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.80358365.js.map
