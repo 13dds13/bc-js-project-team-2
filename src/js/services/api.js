@@ -8,7 +8,7 @@ class ApiService {
     this._page = 1;
   }
 
-  async fetchMovieByInput(input = 'cat') {
+  async fetchMovieByInput(input) {
     const res = await fetch(
       `${this.BASE_URL}/3/search/movie?api_key=${this.API_KEY}&language=${this.LANGUAGE}&query=${input}&page=${this._page}&include_adult=${this.include_adult}`,
     );
