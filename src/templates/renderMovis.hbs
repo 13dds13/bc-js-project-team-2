@@ -1,12 +1,14 @@
 {{#each this}}
-<li class="movi-card">
+<li class="movi-card" data-movieId={{id}}>
   <img class="movi-card__picture" src={{poster_path}} alt='' width="" height="" />
-  <div>
-    <h2 class="movi-card__title">{{title}}</h2>
-    <p class="movi-card__fetures">{{genre_ids}} | {{release_date}}
-      
-    </p>
-    <div class="movi-card__rectangle" >{{vote_average}} </div>
+  <div class="movi-card__about" >
+    <p class="movi-card__title">{{title}}</p>
+    <div class="movi-card__fetures-box">
+      <p class="movi-card__fetures">{{genre_ids}} | {{release_date}}
+      </p>
+      <div class="movi-card__rectangle">{{vote_average}}
+      </div>
+    </div>
   </div>
 </li>
 {{/each}}

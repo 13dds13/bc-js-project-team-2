@@ -16,11 +16,6 @@ async function getMovieData() {
           console.log(data);
       }
 };
-  } catch (error) {
-    console.log(error)
-  }
-};
-getMovieData();
 
 function cardMarkup(data) {
   const makeMarkup = dataPrepareToRender(data)
