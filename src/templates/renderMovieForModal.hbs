@@ -1,0 +1,24 @@
+<img src="https://image.tmdb.org/t/p/w500{{backdrop_path}}" alt="poster of the {{original_title}} movie" width="240" height="356" />
+<p>{{original_title}}</p>
+<div>
+    <ul>
+        <li>Vote / Votes</li>
+        <li>Popularity</li>
+        <li>Original Title</li>
+        <li>Genre</li>
+    </ul>
+</div>
+<div>
+    <ul>
+        <li><span>{{vote_average}}</span> / {{vote_count}}</li>
+        <li>{{popularity}}</li>
+        <li>{{original_title}}</li>
+        <li>
+            {{#each genres}}
+            <span>{{this}}</span>
+            {{/each}}
+        </li>
+    </ul>
+</div>
+<p>About</p>
+<p>{{overview}}</p>
