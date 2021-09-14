@@ -1,4 +1,4 @@
-<header class="header">   
+<header class="header header__main">   
     <div class="container">
         <div class="header-nav">
             <a
@@ -26,29 +26,31 @@
                 </li>
             </ul>
         </div>
-        <div class="search-film__input">
-            <input
-            type="text"
-            name="search"
-            placeholder="Поиск фильмов"
-            class="input input__form"
-            />
-            <span class="input__btn">
-                <svg class="input__btn-icon" width="12" height="12">
-                    <use href="./images/sprite.svg#search"></use>
-                </svg>
-            </span>
+        <div class="search-film__wrap">
+            <div class="search-film__input">
+                <input
+                type="text"
+                name="search"
+                placeholder="Поиск фильмов"
+                class="input input__form"
+                />
+                <span class="input__btn">
+                    <svg class="input__btn-icon" width="12" height="12">
+                        <use href="./images/sprite.svg#search"></use>
+                    </svg>
+                </span>
+            </div>    
         </div>
         <div class="search-film__notifications">
-            <p class="search-film__errors visually-hidden">
+            <p class="search-film__errors visually-hidden"> 
             Search result not successful. Enter the correct movie name
             </p>
         </div>
         <div class="library__navigation">
-            <button type="button" class="watched-show-btn visually-hidden">
+            <button type="button" class="btn btn-active btn-left visually-hidden">
             Watched
             </button>
-            <button type="button" class="queue-show-btn visually-hidden">Queue</button>
+            <button type="button" class="btn btn-passive visually-hidden">Queue</button>
         </div>
     </div>
 </header>
