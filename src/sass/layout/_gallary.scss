@@ -1,17 +1,58 @@
 .movi-card {
   background-color: $cards-bg-colour;
   font-weight: 500;
-  font: size 12px;
+  font-size: 12px;
   line-height: 1.17;
+  flex-basis: calc((100% / 2) - 30px);
+  margin: 20px 0;
+  width: 280px;
+  height: 440px;
+  margin-left: 30px;
+  @media screen and (min-width: 768px) {
+    width: 294px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 274px;
+    flex-basis: calc((100% / 3) - 30px);
+  }
+  &__picture {
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
   &__title {
+    // font: size 12px;
+    // line-height: 1.17;
     text-transform: uppercase;
   }
   &__fetures {
     color: $accent-color;
+    // font: size 12px;
+    // line-height: 1.17;
   }
   &__rectangle {
     width: 36px;
     height: 16px;
     background-color: $accent-color;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $main-bg-text-color;
+    padding-top: 1px;
+    margin-left: 10px;
   }
+  &__fetures-box {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+  }
+}
+.gallary-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  // min-width: 320px;
+  // margin: 20px;
+  margin-left: -30px;
+  // justify-content: space-between;
 }
