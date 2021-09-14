@@ -1,11 +1,12 @@
 {{#each this}}
 <li class="movi-card">
-  <img class="movi-card__picture" src='' alt='' width="" height="" />
+  <img class="movi-card__picture" src={{poster_path}} alt='' width="" height="" />
   <div>
     <h2 class="movi-card__title">{{title}}</h2>
     <p class="movi-card__fetures">{{genre_ids}} | {{release_date}}
-      <span class="movi-card__rating">{{vote_average}}</span>
+      
     </p>
+    <div class="movi-card__rectangle" >{{vote_average}} </div>
   </div>
 </li>
 {{/each}}
