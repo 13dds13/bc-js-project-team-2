@@ -3,7 +3,7 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{}],"nuEX":[function(require,module,exports) {
 "use strict";function e(e,t,i){return t in e?Object.defineProperty(e,t,{value:i,enumerable:!0,configurable:!0,writable:!0}):e[t]=i,e}Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;class t{constructor(){e(this,"BASE_URL","https://api.themoviedb.org"),e(this,"API_KEY","2497cc3d1941bf2f5c8a3541a4d85ed3"),e(this,"LANGUAGE","en-US"),e(this,"include_adult","false"),this._page=1}async fetchMovieByInput(e="cat"){const t=await fetch(`${this.BASE_URL}/3/search/movie?api_key=${this.API_KEY}&language=${this.LANGUAGE}&query=${e}&page=${this._page}&include_adult=${this.include_adult}`);return t.ok?t.json():Promise.reject(`Film with this "${e}" not found`)}async fetchMovieByTrending(){const e=await fetch(`${this.BASE_URL}/3/trending/movie/week?api_key=${this.API_KEY}`);return e.ok?e.json():Promise.reject(`Film with this "${input}" not found`)}}const i=new t;var s=i;exports.default=s;
 },{}],"tDvy":[function(require,module,exports) {
-"use strict";var e=t(require("../services/api"));function t(e){return e&&e.__esModule?e:{default:e}}async function r(){try{const{results:r}=await e.default.fetchMovieByInput()}catch(t){console.log("error")}}r();
+"use strict";var t=e(require("../services/api"));function e(t){return t&&t.__esModule?t:{default:t}}const n=document.querySelector(".input");async function u(){try{n.addEventListener("input",c);const{results:u}=await t.default.fetchMovieByInput()}catch(e){console.log(e)}}function c(e){e.preventDefault();const n=e.target.value;""!==n&&t.default.fetchMovieByInput(n)}u();
 },{"../services/api":"nuEX"}],"pAws":[function(require,module,exports) {
 var define;
 var global = arguments[3];
@@ -15,4 +15,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"../services/api":"nuEX","../../templates/renderMovis.hbs":"W7Hq"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/fetchMovieByInput.js"),require("./js/components/fetchMovieByTrending.js");
 },{"./sass/main.scss":"clu1","./js/components/fetchMovieByInput.js":"tDvy","./js/components/fetchMovieByTrending.js":"gKZd"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.764d3786.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.32c6c866.js.map
