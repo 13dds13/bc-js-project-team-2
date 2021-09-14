@@ -14,7 +14,9 @@ class ApiService {
     this.refs = {
       modalMarkupContainer: document.querySelector('.js-movie-data'),
       galleryList: document.querySelector('#gallary-list'),
-      modal: document.querySelector('.backdrop')};
+      modal: document.querySelector('.backdrop'),
+      modalCloseBtn: document.querySelector('.modal__btn-close'),
+    };
   }
 
   async fetchMovieByInput(input = 'cat') {
