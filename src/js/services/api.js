@@ -1,30 +1,61 @@
 class ApiService {
-  BASE_URL = 'https://api.themoviedb.org';
+  BASE_URL = 'https://api.themoviedb.org/3/';
   API_KEY = '2497cc3d1941bf2f5c8a3541a4d85ed3';
   LANGUAGE = 'en-US';
-    include_adult = 'false';
+  INCLUDE_ADULT = 'false';
+  SEARCH_TYPE = {
+    byInput: 'search/movie?',
+    byTrending: 'trending/movie/week?',
+    byId: `/movie/`,
+  };
 
   constructor() {
     this._page = 1;
+    this.refs = {
+      modalMarkupContainer: document.querySelector('.js-movie-data'),
+      galleryList: document.querySelector('#gallary-list'),
+      modal: document.querySelector('.backdrop'),
+      modalCloseBtn: document.querySelector('.modal__btn-close'),
+    };
   }
 
   async fetchMovieByInput(input = 'cat') {
-    const res = await fetch(
-      `${this.BASE_URL}/3/search/movie?api_key=${this.API_KEY}&language=${this.LANGUAGE}&query=${input}&page=${this._page}&include_adult=${this.include_adult}`,
-    );
-    if (res.ok) {
-      return res.json();
-    }
+    const searchParams = new URLSearchParams({
+      api_key: [this.API_KEY],
+      language: [this.LANGUAGE],
+      query: [input],
+      page: [this._page],
+      include_adult: [this.INCLUDE_ADULT],
+    });
+    const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byInput}${searchParams}`);
+    if (res.ok) return res.json();
+    
     return Promise.reject(`Film with this "${input}" not found`);
   }
 
   async fetchMovieByTrending() {
-    const res = await fetch(`${this.BASE_URL}/3/trending/movie/week?api_key=${this.API_KEY}`);
-    if (res.ok) {
-      return res.json();
-    }
+    const searchParams = new URLSearchParams({
+      api_key: [this.API_KEY],
+    });
+
+    const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byTrending}${searchParams}`);
+
+    if (res.ok) return res.json();
+
     return Promise.reject(`Film with this "${input}" not found`);
   }
+
+  async fetchMovieForModal(movieId) {
+    const searchParams = new URLSearchParams({
+      api_key: [this.API_KEY],
+      language: [this.LANGUAGE],
+    });
+
+    const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byId}${movieId}?${searchParams}`);
+    if (res.ok) return await res.json();
+
+    return Promise.reject(`Sorry! Something went wrong :(`);
+};
 }
 
 const api = new ApiService();
