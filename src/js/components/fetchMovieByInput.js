@@ -2,6 +2,7 @@ import api from '../services/api';
 import renderMovis from '../../templates/renderMovis.hbs';
 import dataPrepareToRender from '../services/renderCard';
 import fetchMovieByTrending from './fetchMovieByTrending';
+import Notiflix from "notiflix";
 import paginationItems from '../components/pagination';
 var debounce = require('lodash.debounce');
 
@@ -19,6 +20,9 @@ try {
       const { results: data } = allData;
       paginationItems(allData.total_results, inputText);
       cardMarkup(data, genres);
+      if (data.length === 0) {
+        Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
+      }
     }
     if (inputText === '') {
       fetchMovieByTrending();
@@ -30,6 +34,14 @@ try {
 
 async function cardMarkup(data, genres) {
   const makeMarkup = await dataPrepareToRender(data, genres);
-  console.log(makeMarkup);
   ulRef.innerHTML = renderMovis(makeMarkup);
 }
+Notiflix.Notify.init({
+  width: "400px",
+  distance: "140px",
+  fontSize: "12px",
+  useIcon: false,
+  closeButton: true,
+  timeout: 4000,
+  position: "center-top",
+});
