@@ -1,22 +1,28 @@
-<img id="img" class="modal__poster" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="poster of the {{original_title}} movie" width="240" height="356" data-path={{poster_path}}/>
-<p id="titleYearId" class="modal__title" data-id={{id}} data-year={{release_date}}>{{title}}</p>
-<div class="modal__stat">
-    <ul class="modal__stat-list">
-        <li class="modal__stat-item">Vote / Votes</li>
-        <li class="modal__stat-item">Popularity</li>
-        <li class="modal__stat-item">Original Title</li>
-        <li class="modal__stat-item">Genre</li>
-    </ul>
-    <ul class="modal__stat-data">
-        <li class="modal__stat-item"><span id="vote" class="modal__vote">{{vote_average}}</span> /&ensp;{{vote_count}}</li>
-        <li class="modal__stat-item">{{popularity}}</li>
-        <li class="modal__stat-item">{{original_title}}</li>
-        <li class="modal__stat-item">
-            {{#each genres}}
-            <span class="modal__stat-genre" data-genreId={{this.id}}>{{this.name}}</span>
-            {{/each}}
-        </li>
-    </ul>
+<div class="modal__poster-wrap">
+    <img id="img" class="modal__poster" src="https://image.tmdb.org/t/p/w500{{poster_path}}"
+        alt="poster of the {{original_title}} movie" width="240" height="356" data-path={{poster_path}} />
 </div>
-<p class="modal__about">About</p>
-<p class="modal__desc">{{overview}}</p>
+<div class="modal__text-data">
+    <p id="titleYearId" class="modal__title" data-id={{id}} data-year={{release_date}}>{{title}}</p>
+    <div class="modal__stat">
+        <ul class="modal__stat-list">
+            <li class="modal__stat-item">Vote / Votes</li>
+            <li class="modal__stat-item">Popularity</li>
+            <li class="modal__stat-item">Original Title</li>
+            <li class="modal__stat-item">Genre</li>
+        </ul>
+        <ul class="modal__stat-data">
+            <li class="modal__stat-item"><span id="vote" class="modal__vote">{{vote_average}}</span> /&ensp;{{vote_count}}
+            </li>
+            <li class="modal__stat-item">{{popularity}}</li>
+            <li class="modal__stat-item">{{original_title}}</li>
+            <li class="modal__stat-item">
+                {{#each genres}}
+                <span class="modal__stat-genre" data-genreId={{this.id}}>{{this.name}}</span>
+                {{/each}}
+            </li>
+        </ul>
+    </div>
+    <p class="modal__about">About</p>
+    <p class="modal__desc">{{overview}}</p>
+</div>
