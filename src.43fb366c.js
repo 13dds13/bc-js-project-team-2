@@ -27,8 +27,8 @@ var t;!function(e,n){"object"==typeof exports&&"object"==typeof module?module.ex
 },{}],"UYQs":[function(require,module,exports) {
 
 },{}],"H1oe":[function(require,module,exports) {
-"use strict";var e=t(require("tui-pagination"));function t(e){return e&&e.__esModule?e:{default:e}}require("tui-pagination/dist/tui-pagination.css");const i=document.getElementById("tui-pagination-container"),a=new e.default(i,{totalItems:10,itemsPerPage:10,visiblePages:10}),n={totalItems:100,itemsPerPage:10,visiblePages:5},s=new e.default(i,n);
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var e=t(require("tui-pagination"));function t(e){return e&&e.__esModule?e:{default:e}}require("tui-pagination/dist/tui-pagination.css");const i=document.getElementById("tui-pagination-container");function n(t){new e.default(i,{totalItems:1500,itemsPerPage:20,visiblePages:5})}var a=n;exports.default=a;
 },{"tui-pagination":"jPMh","tui-pagination/dist/tui-pagination.css":"UYQs"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/fetchMovieByInput.js"),require("./js/components/fetchMovieByTrending.js"),require("./js/components/fetchMovieForModal"),require("./js/components/pagination");
 },{"./sass/main.scss":"clu1","./js/components/fetchMovieByInput.js":"tDvy","./js/components/fetchMovieByTrending.js":"gKZd","./js/components/fetchMovieForModal":"U2uj","./js/components/pagination":"H1oe"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.7508e6aa.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.43fb366c.js.map
