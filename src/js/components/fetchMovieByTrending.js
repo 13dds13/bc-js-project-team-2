@@ -5,7 +5,8 @@ const ul = document.querySelector('#gallary-list');
 async function fetchMovieByTrending() {
   try {
     const { genres } = await api.fetchGenres();
-    const { results: data } = await api.fetchMovieByTrending();
+    const allData = await api.fetchMovieByTrending();
+    const { results: data } = allData;
     const dataToRender = await dataPrepareToRender(data, genres);
     const stringRender = renderMovis(dataToRender);
     ul.innerHTML = stringRender;

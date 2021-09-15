@@ -14,7 +14,8 @@ try {
     const inputText = e.target.value;
     if (inputText !== '') {
       const { genres } = await api.fetchGenres();
-      const { results: data } = await api.fetchMovieByInput(inputText);
+      const allData = await api.fetchMovieByInput(inputText);
+      const { results: data } = allData;
       cardMarkup(data, genres);
     }
     if (inputText === '') {
@@ -26,7 +27,7 @@ try {
 }
 
 async function cardMarkup(data, genres) {
-  const makeMarkup =await dataPrepareToRender(data, genres);
+  const makeMarkup = await dataPrepareToRender(data, genres);
   console.log(makeMarkup);
   ulRef.innerHTML = renderMovis(makeMarkup);
 }
