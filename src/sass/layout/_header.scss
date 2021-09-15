@@ -165,6 +165,9 @@ header {
   border-bottom: 0.5px solid $main-bg-text-color;
   color: $main-bg-text-color;
   width: 100%;
+  &::placeholder {
+    color: $main-bg-text-color;
+  }
   &:hover,
   &:focus {
     opacity: 0.8;
