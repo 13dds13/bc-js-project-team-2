@@ -13,11 +13,11 @@ async function paginationItems(total_results, inputText) {
   //   console.log(pagination);
   pagination.on('afterMove', event => {
     const currentPage = event.page;
-    console.log(currentPage);
+    // console.log(currentPage);
     api.page = currentPage;
     // console.log(api);
     const allData = api.fetchMovieByInput(inputText).then(({ results: data }) => {
-      console.log(data);
+      // console.log(data);
       const stringRender = renderMovis(data);
       //   console.log(strRen);
       ul.innerHTML = stringRender;

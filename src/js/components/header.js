@@ -1,11 +1,16 @@
 import api from '../services/api';
-
+import storage from './storage';
+import cardMarkup from './fetchMovieByInput';
+import Notiflix from "notiflix";
+import addSpinner from '../services/addSpinner';
+const ul = document.querySelector('#gallary-list');
 api.refs.logoLink.addEventListener('click', sendToHomePage);
 api.refs.homeLink.addEventListener('click', sendToHomePage);
 api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
 
 function sendToHomePage(e) {
-  // e.preventDefault();
+  addSpinner()
+  e.preventDefault();
   api.refs.searchFilm.classList.remove('visually-hidden');
   api.refs.watchedBtn.classList.add('visually-hidden');
   api.refs.queueBtn.classList.add('visually-hidden');
@@ -15,7 +20,8 @@ function sendToHomePage(e) {
   api.refs.header.classList.add('header__main');
 }
 
-function sendToLibraryPage(e) {
+async function sendToLibraryPage(e) {
+  addSpinner()
   e.preventDefault();
   api.refs.searchFilm.classList.add('visually-hidden');
   api.refs.watchedBtn.classList.remove('visually-hidden');
@@ -24,22 +30,37 @@ function sendToLibraryPage(e) {
   api.refs.libraryLink.classList.add('current');
   api.refs.header.classList.add('header__library');
   api.refs.header.classList.remove('header__main');
+
+  const watchedLoad = storage.load('watched')
+  const queueLoad = storage.load('queue')
+  const localStorageAll = [...watchedLoad, ...queueLoad]
+  const { genres } = await api.fetchGenres();
+  cardMarkup(localStorageAll, genres)
 }
 
 api.refs.watchedBtn.addEventListener('click', onWatched);
 
-function onWatched(e) {
+async function onWatched(e) {
+  addSpinner()
   api.refs.watchedBtn.classList.remove('btn-passive');
   api.refs.watchedBtn.classList.add('btn-active');
   api.refs.queueBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-passive');
-}
 
+  const { genres } = await api.fetchGenres();
+  const data = storage.load('watched')
+  cardMarkup(data, genres)
+}
 api.refs.queueBtn.addEventListener('click', onQueue);
 
-function onQueue(e) {
+async function onQueue(e) {
+  addSpinner()
   api.refs.watchedBtn.classList.add('btn-passive');
   api.refs.watchedBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-active');
   api.refs.queueBtn.classList.remove('btn-passive');
+
+  const { genres } = await api.fetchGenres();
+  const data = storage.load('queue')
+  cardMarkup(data, genres)
 }

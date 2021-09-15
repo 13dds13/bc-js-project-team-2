@@ -4,6 +4,7 @@ import dataPrepareToRender from '../services/renderCard';
 import fetchMovieByTrending from './fetchMovieByTrending';
 import Notiflix from "notiflix";
 import paginationItems from '../components/pagination';
+import addSpinner from '../services/addSpinner';
 var debounce = require('lodash.debounce');
 
 const inputRef = document.querySelector('.input__form');
@@ -15,6 +16,7 @@ try {
     e.preventDefault();
     const inputText = e.target.value;
     if (inputText !== '') {
+      addSpinner()
       const { genres } = await api.fetchGenres();
       const allData = await api.fetchMovieByInput(inputText);
       const { results: data } = allData;
@@ -25,6 +27,7 @@ try {
       }
     }
     if (inputText === '') {
+      addSpinner()
       fetchMovieByTrending();
     }
   }
@@ -45,3 +48,4 @@ Notiflix.Notify.init({
   timeout: 4000,
   position: "center-top",
 });
+export default cardMarkup
