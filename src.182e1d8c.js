@@ -39,4 +39,4 @@ const e=e=>{try{const a=localStorage.getItem(e);return null===a?[]:JSON.parse(a)
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/fetchMovieByInput.js"),require("./js/components/fetchMovieByTrending.js"),require("./js/components/fetchMovieForModal"),require("./js/components/pagination"),require("./js/components/header.js"),require("./js/components/setToStorage");
 },{"./sass/main.scss":"clu1","./js/components/fetchMovieByInput.js":"tDvy","./js/components/fetchMovieByTrending.js":"gKZd","./js/components/fetchMovieForModal":"U2uj","./js/components/pagination":"H1oe","./js/components/header.js":"NNYM","./js/components/setToStorage":"r9rX"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.143ff69a.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.182e1d8c.js.map
