@@ -5,7 +5,7 @@ api.refs.homeLink.addEventListener('click', sendToHomePage);
 api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
 
 function sendToHomePage(e) {
-  e.preventDefault();
+  // e.preventDefault();
   api.refs.searchFilm.classList.remove('visually-hidden');
   api.refs.watchedBtn.classList.add('visually-hidden');
   api.refs.queueBtn.classList.add('visually-hidden');
