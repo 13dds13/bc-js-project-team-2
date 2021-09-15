@@ -31,4 +31,4 @@ var t;!function(e,n){"object"==typeof exports&&"object"==typeof module?module.ex
 },{"tui-pagination":"jPMh","tui-pagination/dist/tui-pagination.css":"UYQs"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/fetchMovieByInput.js"),require("./js/components/fetchMovieByTrending.js"),require("./js/components/fetchMovieForModal"),require("./js/components/pagination");
 },{"./sass/main.scss":"clu1","./js/components/fetchMovieByInput.js":"tDvy","./js/components/fetchMovieByTrending.js":"gKZd","./js/components/fetchMovieForModal":"U2uj","./js/components/pagination":"H1oe"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.30b41be8.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.b98afa95.js.map
