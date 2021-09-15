@@ -17,6 +17,14 @@ class ApiService {
       galleryList: document.querySelector('#gallary-list'),
       modal: document.querySelector('.backdrop'),
       modalCloseBtn: document.querySelector('.modal__btn-close'),
+
+      logoLink: document.querySelector('#nav-logo'),
+      homeLink: document.querySelector('#home-page'),
+      libraryLink: document.querySelector('#library-page'),
+      searchFilm: document.querySelector('.search-film__wrap'),
+      watchedBtn: document.querySelector('#watched-btn'),
+      queueBtn: document.querySelector('#queue-btn'),
+      header: document.querySelector('#head'),
     };
   }
 

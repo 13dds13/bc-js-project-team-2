@@ -177,6 +177,7 @@ header {
   right: 1px;
   fill: none;
   stroke: $main-bg-text-color;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.8;
