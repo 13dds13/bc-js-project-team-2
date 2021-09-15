@@ -2,12 +2,16 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   background-color: rgba(0, 0, 0, 0.5);
+
+  @include for-desktop {
+    overflow-y: inherit;
+  }
 }
 
 .body_modal-open {
