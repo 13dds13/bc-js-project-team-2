@@ -1,35 +1,20 @@
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+
 const container = document.getElementById('tui-pagination-container');
-const instance = new Pagination(container, { totalItems: 10, itemsPerPage: 10, visiblePages: 10 });
+// const instance = new Pagination(container, { totalItems: 10, itemsPerPage: 10, visiblePages: 10 });
 
-// const options = {
-//   // below default value of options
-//   totalItems: 10,
-//   itemsPerPage: 10,
-//   visiblePages: 10,
-//   page: 1,
-//   centerAlign: false,
-//   firstItemClassName: 'tui-first-child',
-//   lastItemClassName: 'tui-last-child',
-//   template: {
-//     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-//     currentPage: '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-//     moveButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</a>',
-//     disabledMoveButton:
-//       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</span>',
-//     moreButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-//       '<span class="tui-ico-ellip">...</span>' +
-//       '</a>',
-//   },
-// };
-const option1 = { totalItems: 100, itemsPerPage: 10, visiblePages: 5 };
-const pagination = new Pagination(container, option1);
+function paginationItems(data) {
+  const option1 = { totalItems: 1500, itemsPerPage: 20, visiblePages: 5 };
+  const pagination = new Pagination(container, option1);
+}
+export default paginationItems;
 
-// instance.getCurrentPage();
+//instance.getCurrentPage();
+
+// paganation.on('afterMove', event => {
+//   const currentPage = event.page;
+//   console.log(currentPage);
+// });
+
+// pagination.movePageTo(10);
