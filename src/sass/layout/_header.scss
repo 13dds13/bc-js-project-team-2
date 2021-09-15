@@ -203,11 +203,24 @@ header {
   border-radius: 5px;
   color: $main-bg-text-color;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: box-shadow $duration-main $timing-function-main;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  }
 }
 
 .btn-active {
   background-color: $accent-color;
   border: none;
+  transition: background-color $duration-main $timing-function-main;
+
+  &:hover,
+  &:focus {
+    background-color: #e45f00;
+  }
 }
 
 .btn-left {

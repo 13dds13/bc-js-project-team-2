@@ -25,3 +25,21 @@ function sendToLibraryPage(e) {
   api.refs.header.classList.add('header__library');
   api.refs.header.classList.remove('header__main');
 }
+
+api.refs.watchedBtn.addEventListener('click', onWatched);
+
+function onWatched(e) {
+  api.refs.watchedBtn.classList.remove('btn-passive');
+  api.refs.watchedBtn.classList.add('btn-active');
+  api.refs.queueBtn.classList.remove('btn-active');
+  api.refs.queueBtn.classList.add('btn-passive');
+}
+
+api.refs.queueBtn.addEventListener('click', onQueue);
+
+function onQueue(e) {
+  api.refs.watchedBtn.classList.add('btn-passive');
+  api.refs.watchedBtn.classList.remove('btn-active');
+  api.refs.queueBtn.classList.add('btn-active');
+  api.refs.queueBtn.classList.remove('btn-passive');
+}
