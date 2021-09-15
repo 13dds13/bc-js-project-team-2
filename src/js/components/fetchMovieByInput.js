@@ -2,6 +2,7 @@ import api from '../services/api';
 import renderMovis from '../../templates/renderMovis.hbs';
 import dataPrepareToRender from '../services/renderCard';
 import fetchMovieByTrending from './fetchMovieByTrending';
+import paginationItems from '../components/pagination';
 var debounce = require('lodash.debounce');
 
 const inputRef = document.querySelector('.input__form');
@@ -16,6 +17,7 @@ try {
       const { genres } = await api.fetchGenres();
       const allData = await api.fetchMovieByInput(inputText);
       const { results: data } = allData;
+      paginationItems(allData.total_results, inputText);
       cardMarkup(data, genres);
     }
     if (inputText === '') {
