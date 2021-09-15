@@ -4,8 +4,9 @@ import dataPrepareToRender from '../services/renderCard';
 const ul = document.querySelector('#gallary-list');
 async function fetchMovieByTrending() {
   try {
+    const { genres } = await api.fetchGenres();
     const { results: data } = await api.fetchMovieByTrending();
-    const dataToRender = dataPrepareToRender(data);
+    const dataToRender = await dataPrepareToRender(data, genres);
     const stringRender = renderMovis(dataToRender);
     ul.innerHTML = stringRender;
   } catch (error) {
@@ -14,4 +15,4 @@ async function fetchMovieByTrending() {
 }
 
 fetchMovieByTrending();
-export default fetchMovieByTrending
+export default fetchMovieByTrending;

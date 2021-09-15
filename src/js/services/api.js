@@ -7,6 +7,7 @@ class ApiService {
     byInput: 'search/movie?',
     byTrending: 'trending/movie/week?',
     byId: `/movie/`,
+    genres: `genre/movie/list`,
   };
 
   constructor() {
@@ -29,7 +30,7 @@ class ApiService {
     });
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byInput}${searchParams}`);
     if (res.ok) return res.json();
-    
+
     return Promise.reject(`Film with this "${input}" not found`);
   }
 
@@ -55,7 +56,19 @@ class ApiService {
     if (res.ok) return await res.json();
 
     return Promise.reject(`Sorry! Something went wrong :(`);
-};
+  }
+
+  async fetchGenres() {
+    const searchParams = new URLSearchParams({
+      api_key: [this.API_KEY],
+      language: [this.LANGUAGE],
+    });
+
+    const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.genres}?${searchParams}`);
+    if (res.ok) return await res.json();
+
+    return Promise.reject(`Sorry! Something went wrong :(`);
+  }
 }
 
 const api = new ApiService();

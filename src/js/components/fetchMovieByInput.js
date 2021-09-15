@@ -7,24 +7,26 @@ var debounce = require('lodash.debounce');
 const inputRef = document.querySelector('.input__form');
 
 const ulRef = document.querySelector('#gallary-list');
-  try {
-    inputRef.addEventListener('input', debounce(onInput,1000));
-    async function onInput(e) {
-      e.preventDefault();
-      const inputText = e.target.value;
-      if (inputText !== '') {
-        const { results: data } = await api.fetchMovieByInput(inputText);
-        cardMarkup(data);
-      }
-      if (inputText === '') {
-        fetchMovieByTrending()
-      }
+try {
+  inputRef.addEventListener('input', debounce(onInput, 1000));
+  async function onInput(e) {
+    e.preventDefault();
+    const inputText = e.target.value;
+    if (inputText !== '') {
+      const { genres } = await api.fetchGenres();
+      const { results: data } = await api.fetchMovieByInput(inputText);
+      cardMarkup(data, genres);
     }
-  } catch (error) {
-    console.log(error);
+    if (inputText === '') {
+      fetchMovieByTrending();
+    }
+  }
+} catch (error) {
+  console.log(error);
 }
-  
-function cardMarkup(data) {
-  const makeMarkup = dataPrepareToRender(data);
+
+async function cardMarkup(data, genres) {
+  const makeMarkup =await dataPrepareToRender(data, genres);
+  console.log(makeMarkup);
   ulRef.innerHTML = renderMovis(makeMarkup);
 }
