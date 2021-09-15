@@ -1,26 +1,123 @@
 .backdrop {
   position: fixed;
-  height: 100vh;
-  width: 320px;
-  padding: 20px;
+  height: 100%;
+  width: 100%;
   overflow: scroll;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .body_modal-open {
   overflow: hidden;
-  //   filter: blur(2px);
+  // filter: blur(5px);
 }
 
 .modal {
   position: fixed;
   width: 280px;
+  top: 20px;
+  left: 50%;
+  transform: translate(-50%, 0);
   padding: 48px 20px;
   background-color: $main-bg-text-color;
+
+  @include for-tablet {
+    top: 230px;
+  }
+
+  @include for-desktop {
+    top: 100px;
+  }
+
+  &__vote {
+    display: inline-block;
+    height: 16px;
+    width: 32px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: $accent-color;
+  }
+
+  &__title,
+  &__about,
+  &__btn {
+    text-transform: uppercase;
+  }
+
+  @include for-tablet {
+    width: 618px;
+  }
+
+  @include for-desktop {
+    width: 882px;
+  }
+}
+
+.modal__movie-container {
+  margin-bottom: 21px;
+  font-weight: 500;
+  color: $secondary-text-colour;
+}
+
+.modal__poster {
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.modal__title {
+  margin-bottom: 20px;
+
+  font-size: 20px;
+  line-height: 1.15;
+}
+
+.modal__stat {
+  display: flex;
+  margin-bottom: 20px;
+
+  &-list {
+    margin-right: 40px;
+  }
+
+  &-list > &-item {
+    color: $light-gray-description-box;
+  }
+
+  &-item {
+    line-height: 1.33;
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.modal__about {
+  margin-bottom: 10px;
+}
+
+.modal__desc {
+  line-height: 1.67;
+}
+
+.modal__btn {
+  vertical-align: bottom;
+  font-size: inherit;
+  width: 112px;
+  height: 44px;
+
+  border: 1px solid $secondary-text-colour;
+  border-radius: 5px;
+
+  background-color: $main-bg-text-color;
+
+  &_accent-style {
+    background-color: $accent-color;
+    color: $main-bg-text-color;
+    border: none;
+  }
 }
 
 .modal__btn-close {

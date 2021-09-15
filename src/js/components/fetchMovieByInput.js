@@ -3,6 +3,7 @@ import renderMovis from '../../templates/renderMovis.hbs';
 import dataPrepareToRender from '../services/renderCard';
 import fetchMovieByTrending from './fetchMovieByTrending';
 import Notiflix from "notiflix";
+import paginationItems from '../components/pagination';
 var debounce = require('lodash.debounce');
 
 const inputRef = document.querySelector('.input__form');
@@ -15,7 +16,9 @@ try {
     const inputText = e.target.value;
     if (inputText !== '') {
       const { genres } = await api.fetchGenres();
-      const { results: data } = await api.fetchMovieByInput(inputText);
+      const allData = await api.fetchMovieByInput(inputText);
+      const { results: data } = allData;
+      paginationItems(allData.total_results, inputText);
       cardMarkup(data, genres);
       if (data.length === 0) {
         Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
