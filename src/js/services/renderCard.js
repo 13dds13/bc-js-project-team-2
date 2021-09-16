@@ -21,9 +21,9 @@ export default async function dataPrepareToRender(data, genres) {
           dataToRender.genre_ids = array;
         }
       });
-      console.log('до', dataToRender);
+      // console.log('до', dataToRender);
       dataToRender.genre_ids = dataToRender.genre_ids.join(', ');
-      console.log('dfdsf', dataToRender);
+      // console.log('dfdsf', dataToRender);
     });
 
     if (dataToRender.poster_path === 'https://image.tmdb.org/t/p/w500/null') {
