@@ -5,8 +5,6 @@
   line-height: 1.17;
 
   margin-bottom: 20px;
-  // width: 280px;
-  // height: 440px;
   margin-left: 30px;
   @include for-tablet {
     flex-basis: calc((100% / 2) - 30px);
@@ -17,6 +15,7 @@
     flex-basis: calc((100% / 3) - 30px);
   }
   &__picture {
+    border: 1px solid black;
     border-radius: 5px;
     margin-bottom: 10px;
     height: 398px;
@@ -29,14 +28,10 @@
     }
   }
   &__title {
-    // font: size 12px;
-    // line-height: 1.17;
     text-transform: uppercase;
   }
   &__fetures {
     color: $accent-color;
-    // font: size 12px;
-    // line-height: 1.17;
   }
   &__rectangle {
     width: 36px;
@@ -53,7 +48,6 @@
   &__fetures-box {
     display: flex;
     align-items: center;
-    // justify-content: center;
   }
 }
 .gallary-list {

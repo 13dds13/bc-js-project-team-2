@@ -80,6 +80,9 @@ class ApiService {
 
     return Promise.reject(`Sorry! Something went wrong :(`);
   }
+  set page(newPage) {
+    this._page = newPage;
+  }
 }
 
 const api = new ApiService();

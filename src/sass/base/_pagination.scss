@@ -3,14 +3,6 @@
   border-radius: 6px;
 }
 
-// .tui-pagination .tui-ico-first (img)
-// .tui-pagination .tui-ico-next
-// .tui-pagination .tui-ico-last
-// .tui-pagination .tui-ico-ellip
-.tui-pagination .tui-first + .tui-prev {
-  display: none;
-}
-
 .tui-ico-ellipsis,
 .tui-ico-first,
 .tui-ico-last,
@@ -66,7 +58,7 @@
 
 .tui-pagination .tui-first-child,
 .tui-pagination .tui-prev-is-ellip {
-  border-left: 1px solid #ddd;
+  border-left: 1px solid rgb(221, 221, 221);
 }
 
 .tui-pagination .tui-last-child,

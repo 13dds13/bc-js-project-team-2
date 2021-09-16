@@ -6,9 +6,13 @@
       </svg>
     </button>
     <div class="modal__container">
-      <div class="modal__movie-container js-movie-data"></div>
-      <button class="modal__btn modal__btn_accent-style" type="button">add to Watched</button>
-      <button class="modal__btn" type="button">add to queue</button>
+      <div class="modal__movie-container js-movie-data" data-year=""></div>
+      <div id="modalBtnWrap" class="modal__btn-wrap">
+        <button id="watchedBtn" class="modal__btn modal__btn_accent-style" type="button">
+          add to watched
+        </button>
+        <button id="queueBtn" class="modal__btn" type="button">add to queue</button>
+      </div>
     </div>
   </div>
 </div>
