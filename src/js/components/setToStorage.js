@@ -23,7 +23,7 @@ function onBtnClick(e) {
             genre: document.querySelectorAll('.modal__stat-genre'),
     }
     };
-    // console.log(refs.movieData.titleYearId.textContent);
+    
     if (e.target === refs.watchedBtn) {
         const genresId = [];
         refs.movieData.genre.forEach(item => genresId.push(Number.parseInt(item.dataset.genreid)))
@@ -37,10 +37,7 @@ function onBtnClick(e) {
             genre_ids: genresId,
         }
         
-        // const localData = localStorage.getItem('watched');
-        // watched.push(...JSON.parse(localData));
         const watched = get('watched');
-        // console.log(watched);
         watched.push(movieData);
         localStorage.setItem('watched', JSON.stringify(watched));
         return;
@@ -48,7 +45,7 @@ function onBtnClick(e) {
 
     if (e.target === refs.queueBtn) {
         const genresId = [];
-        refs.movieData.genre.forEach(item => genresId.push(item.dataset.genreid))
+        refs.movieData.genre.forEach(item => genresId.push(Number.parseInt(item.dataset.genreid)))
 
         const movieData = {
             id: refs.movieData.titleYearId.dataset.id,
@@ -59,12 +56,8 @@ function onBtnClick(e) {
             genre_ids: genresId,
         }
         
-        // const localData = localStorage.getItem('watched');
-        // watched.push(...JSON.parse(localData));
         const queue = get('queue');
-        // console.log(watched);
-      queue.push(movieData);
-      console.log(movieData);
+        queue.push(movieData);
         localStorage.setItem('queue', JSON.stringify(queue));
         return;
     }
