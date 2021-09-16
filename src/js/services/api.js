@@ -25,6 +25,9 @@ class ApiService {
       watchedBtn: document.querySelector('#watched-btn'),
       queueBtn: document.querySelector('#queue-btn'),
       header: document.querySelector('#head'),
+      teamModal: document.querySelector('#team'),
+      teamOpen: document.querySelector('#team-open'),
+      teamClose: document.querySelector('#team-close'),
     };
   }
 
