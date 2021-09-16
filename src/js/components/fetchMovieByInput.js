@@ -17,7 +17,7 @@ try {
     const inputText = e.target.value;
     if (inputText !== '') {
       addSpinner()
-      const { genres } = await api.fetchGenres();
+      const { genres } = await api.genres;
       const allData = await api.fetchMovieByInput(inputText);
       const { results: data } = allData;
       paginationItems(allData.total_results, inputText);

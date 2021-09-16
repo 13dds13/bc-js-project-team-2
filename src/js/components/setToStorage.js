@@ -26,7 +26,7 @@ function onBtnClick(e) {
     // console.log(refs.movieData.titleYearId.textContent);
     if (e.target === refs.watchedBtn) {
         const genresId = [];
-        refs.movieData.genre.forEach(item => genresId.push(item.dataset.genreid))
+        refs.movieData.genre.forEach(item => genresId.push(Number.parseInt(item.dataset.genreid)))
 
         const movieData = {
             id: refs.movieData.titleYearId.dataset.id,
@@ -63,7 +63,8 @@ function onBtnClick(e) {
         // watched.push(...JSON.parse(localData));
         const queue = get('queue');
         // console.log(watched);
-        queue.push(movieData);
+      queue.push(movieData);
+      console.log(movieData);
         localStorage.setItem('queue', JSON.stringify(queue));
         return;
     }

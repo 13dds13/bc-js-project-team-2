@@ -29,8 +29,9 @@ class ApiService {
       teamOpen: document.querySelector('#team-open'),
       teamClose: document.querySelector('#team-close'),
     };
-  }
-
+    this.genres = this.fetchGenres();
+      }
+  
   async fetchMovieByInput(input = 'cat') {
     const searchParams = new URLSearchParams({
       api_key: [this.API_KEY],
