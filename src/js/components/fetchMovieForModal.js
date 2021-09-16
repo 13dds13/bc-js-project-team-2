@@ -32,7 +32,16 @@ async function movieDataById(movieId) {
         modal.classList.remove('visually-hidden');
         modal.addEventListener('click', onModalClick);
         document.querySelector('body').classList.add('body_modal-open');
+        window.addEventListener('keydown', onKeydown);
     } catch (error) {
         console.log(error);
     }
 };
+
+function onKeydown(e) {
+    if (e.key === 'Escape') {
+        modal.classList.add('visually-hidden');
+        window.removeEventListener('keydown', onKeydown);
+        document.querySelector('body').classList.remove('body_modal-open');
+    };
+}
