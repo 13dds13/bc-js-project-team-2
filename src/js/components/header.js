@@ -49,7 +49,6 @@ async function onWatched(e) {
 
   const { genres } = await api.genres;
   const data = storage.load('watched')
-  console.log(data);
   await cardMarkup(data, genres)
 }
 api.refs.queueBtn.addEventListener('click', onQueue);
@@ -61,7 +60,7 @@ async function onQueue(e) {
   api.refs.queueBtn.classList.add('btn-active');
   api.refs.queueBtn.classList.remove('btn-passive');
 
-  const { genres } = await api.fetchGenres();
+  const { genres } = await api.genres;
   const data = storage.load('queue')
-  cardMarkup(data, genres)
+  await cardMarkup(data, genres)
 }

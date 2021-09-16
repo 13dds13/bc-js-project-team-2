@@ -7,7 +7,7 @@ const ul = document.querySelector('#gallary-list');
 async function fetchMovieByTrending() {
   try {
     addSpinner()
-    const { genres } = await api.fetchGenres();
+    const { genres } = await api.genres;
     const allData = await api.fetchMovieByTrending();
     // console.log(allData);
     paginationItems(allData.total_results);
