@@ -28,6 +28,7 @@ class ApiService {
       teamModal: document.querySelector('#team'),
       teamOpen: document.querySelector('#team-open'),
       teamClose: document.querySelector('#team-close'),
+      overlay: document.querySelector('.team__backdrop'),
     };
   }
 
