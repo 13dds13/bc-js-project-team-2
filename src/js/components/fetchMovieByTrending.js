@@ -8,7 +8,6 @@ async function fetchMovieByTrending() {
   try {
     addSpinner()
     const { genres } = await api.genres;
-    console.log(genres);
     const allData = await api.fetchMovieByTrending();
     // paginationItems(allData.total_results);
     const { results: data } = allData;

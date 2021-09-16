@@ -67,10 +67,7 @@
 const load = key => {
     try {
         const serializedState = localStorage.getItem(key);
-        console.log(serializedState);
-        console.log(key);
         return serializedState === null ? undefined : JSON.parse(serializedState);
-        
   } catch (err) {
     console.error('Get state error: ', err);
   }
