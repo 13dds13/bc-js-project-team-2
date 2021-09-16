@@ -67,7 +67,7 @@ class ApiService {
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byId}${movieId}?${searchParams}`);
     if (res.ok) return await res.json();
 
-    return Promise.reject(`Sorry! Something went wrong :(`);
+    return Promise.reject('Sorry! Something went wrong :(');
   }
 
   async fetchGenres() {
