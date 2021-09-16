@@ -63,7 +63,8 @@ function onBtnClick(e) {
         // watched.push(...JSON.parse(localData));
         const queue = get('queue');
         // console.log(watched);
-        queue.push(movieData);
+      queue.push(movieData);
+      console.log(movieData);
         localStorage.setItem('queue', JSON.stringify(queue));
         return;
     }

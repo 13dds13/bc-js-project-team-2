@@ -31,11 +31,11 @@ async function sendToLibraryPage(e) {
   api.refs.header.classList.add('header__library');
   api.refs.header.classList.remove('header__main');
 
-  const watchedLoad = storage.load('watched')
-  const queueLoad = storage.load('queue')
-  const localStorageAll = [...watchedLoad, ...queueLoad]
-  const { genres } = await api.fetchGenres();
-  cardMarkup(localStorageAll, genres)
+  // const watchedLoad = storage.load('watched')
+  // const queueLoad = storage.load('queue')
+  // const localStorageAll = [...watchedLoad, ...queueLoad]
+  // const { genres } = await api.fetchGenres();
+  // cardMarkup(localStorageAll, genres)
 }
 
 api.refs.watchedBtn.addEventListener('click', onWatched);
@@ -47,9 +47,10 @@ async function onWatched(e) {
   api.refs.queueBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-passive');
 
-  const { genres } = await api.fetchGenres();
+  const { genres } = await api.genres;
   const data = storage.load('watched')
-  cardMarkup(data, genres)
+  console.log(data);
+  await cardMarkup(data, genres)
 }
 api.refs.queueBtn.addEventListener('click', onQueue);
 

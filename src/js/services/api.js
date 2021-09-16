@@ -26,8 +26,9 @@ class ApiService {
       queueBtn: document.querySelector('#queue-btn'),
       header: document.querySelector('#head'),
     };
-  }
-
+    this.genres = this.fetchGenres();
+      }
+  
   async fetchMovieByInput(input = 'cat') {
     const searchParams = new URLSearchParams({
       api_key: [this.API_KEY],
