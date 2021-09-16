@@ -45,4 +45,4 @@ function e(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/fetchMovieByInput.js"),require("./js/components/fetchMovieByTrending.js"),require("./js/components/fetchMovieForModal"),require("./js/components/pagination"),require("./js/components/header.js"),require("./js/components/team.js"),require("./js/components/setToStorage");
 },{"./sass/main.scss":"clu1","./js/components/fetchMovieByInput.js":"tDvy","./js/components/fetchMovieByTrending.js":"gKZd","./js/components/fetchMovieForModal":"U2uj","./js/components/pagination":"H1oe","./js/components/header.js":"NNYM","./js/components/team.js":"YkC3","./js/components/setToStorage":"r9rX"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.82d84150.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.ac35ca34.js.map
