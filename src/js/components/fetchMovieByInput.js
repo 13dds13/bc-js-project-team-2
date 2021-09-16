@@ -44,8 +44,9 @@ Notiflix.Notify.init({
   distance: "140px",
   fontSize: "12px",
   useIcon: false,
-  closeButton: true,
-  timeout: 4000,
+  // closeButton: true,
+  timeout: 2000,
   position: "center-top",
+  clickToClose: true,
 });
 export default cardMarkup
