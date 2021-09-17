@@ -28,6 +28,7 @@ class ApiService {
       teamModal: document.querySelector('#team'),
       teamOpen: document.querySelector('#team-open'),
       teamClose: document.querySelector('#team-close'),
+      overlay: document.querySelector('.team__backdrop'),
     };
     this.genres = this.fetchGenres();
       }
@@ -67,7 +68,7 @@ class ApiService {
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byId}${movieId}?${searchParams}`);
     if (res.ok) return await res.json();
 
-    return Promise.reject(`Sorry! Something went wrong :(`);
+    return Promise.reject('Sorry! Something went wrong :(');
   }
 
   async fetchGenres() {
