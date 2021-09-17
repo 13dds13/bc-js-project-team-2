@@ -1,21 +1,12 @@
 import api from '../services/api';
 import storage from './storage';
 import cardMarkup from './../services/cardMarkup';
-import Notiflix from 'notiflix';
 import addSpinner from '../services/addSpinner';
-import dataPrepareToRender from '../services/renderCard';
-import renderMovis from '../../templates/renderMovis.hbs';
-
 import renderMoviesTrending from '../components/renderMoviesTrending';
 
 api.refs.logoLink.addEventListener('click', renderMoviesTrending);
 
-
-
-
 api.refs.homeLink.addEventListener('click', sendToHomePage);
-api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
-
 function sendToHomePage(e) {
   addSpinner();
   e.preventDefault();
@@ -28,9 +19,9 @@ function sendToHomePage(e) {
   api.refs.header.classList.add('header__main');
   renderMoviesTrending();
   api.refs.divAnim.classList.add('visually-hidden');
-  api.refs.inputRef;
 }
 
+api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
 async function sendToLibraryPage(e) {
   addSpinner();
   e.preventDefault();
@@ -45,44 +36,47 @@ async function sendToLibraryPage(e) {
 }
 
 api.refs.watchedBtn.addEventListener('click', onWatched);
-
 async function onWatched(e) {
   addSpinner();
   api.refs.watchedBtn.classList.remove('btn-passive');
   api.refs.watchedBtn.classList.add('btn-active');
   api.refs.queueBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-passive');
-  if (localStorage.watched === undefined) {
+  if (localStorage.watched === undefined || localStorage.watched === []) {
     api.refs.galleryList.innerHTML = "";
     api.refs.divAnim.classList.remove('visually-hidden');
   }
   if (localStorage.watched !== undefined) {
+    api.refs.divAnim.classList.add('visually-hidden');
     const { genres } = await api.genres;
     const data = storage.load('watched');
     await cardMarkup(data, genres);
+    if (data.length === 0) {
+        api.refs.galleryList.innerHTML = "";
+      api.refs.divAnim.classList.remove('visually-hidden');
+    }
   }
 
   api.refs.queueBtn.addEventListener('click', onQueue);
-
   async function onQueue(e) {
     addSpinner();
     api.refs.watchedBtn.classList.add('btn-passive');
     api.refs.watchedBtn.classList.remove('btn-active');
     api.refs.queueBtn.classList.add('btn-active');
     api.refs.queueBtn.classList.remove('btn-passive');
-
-    const { genres } = await api.genres;
-    const data = storage.load('queue');
-    await cardMarkup(data, genres);
-
     if (localStorage.queue === undefined) {
       api.refs.galleryList.innerHTML = "";
       api.refs.divAnim.classList.remove('visually-hidden');
     }
     if (localStorage.queue !== undefined) {
+      api.refs.divAnim.classList.add('visually-hidden');
       const { genres } = await api.genres;
       const data = storage.load('queue')
       await cardMarkup(data, genres)
+      if (data.length === 0) {
+        api.refs.galleryList.innerHTML = "";
+      api.refs.divAnim.classList.remove('visually-hidden');
+      }
     }
   }
 }
