@@ -6,3 +6,4 @@ import './js/components/pagination';
 import './js/components/header.js';
 import './js/components/team.js';
 import './js/services/darcmodMine';
+import './js/components/btnUp';
