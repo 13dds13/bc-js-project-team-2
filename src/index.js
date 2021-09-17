@@ -5,4 +5,5 @@ import './js/components/fetchMovieForModal';
 import './js/components/pagination';
 import './js/components/header.js';
 import './js/components/team.js';
-import './js/components/setToStorage'
+import './js/components/setToStorage';
+import './js/services/darcmodMine';
