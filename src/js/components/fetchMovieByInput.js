@@ -7,15 +7,13 @@ import paginationItems from '../components/pagination';
 import addSpinner from '../services/addSpinner';
 var debounce = require('lodash.debounce');
 
-const inputRef = document.querySelector('.input__form');
-
-const ulRef = document.querySelector('#gallary-list');
 try {
-  inputRef.addEventListener('input', debounce(onInput, 1000));
+  api.refs.inputRef.addEventListener('input', debounce(onInput, 1000));
   async function onInput(e) {
     e.preventDefault();
     const inputText = e.target.value;
     if (inputText !== '') {
+      api.refs.divAnim.classList.add('visually-hidden');
       addSpinner()
       const { genres } = await api.genres;
       const allData = await api.fetchMovieByInput(inputText);
@@ -24,11 +22,13 @@ try {
       cardMarkup(data, genres);
       if (data.length === 0) {
         Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
+        api.refs.divAnim.classList.remove('visually-hidden');
       }
     }
     if (inputText === '') {
       addSpinner()
       fetchMovieByTrending();
+      api.refs.divAnim.classList.add('visually-hidden');
     }
   }
 } catch (error) {
@@ -37,7 +37,7 @@ try {
 
 async function cardMarkup(data, genres) {
   const makeMarkup = await dataPrepareToRender(data, genres);
-  ulRef.innerHTML = renderMovis(makeMarkup);
+  api.refs.galleryList.innerHTML = renderMovis(makeMarkup);
 }
 Notiflix.Notify.init({
   width: "400px",

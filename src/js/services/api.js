@@ -29,6 +29,8 @@ class ApiService {
       teamOpen: document.querySelector('#team-open'),
       teamClose: document.querySelector('#team-close'),
       overlay: document.querySelector('.team__backdrop'),
+      divAnim: document.querySelector('.animation'),
+      inputRef: document.querySelector('.input__form'),
     };
     this.genres = this.fetchGenres();
       }
