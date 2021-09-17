@@ -1,7 +1,4 @@
 import api from '../services/api';
-import renderMovis from '../../templates/renderMovis.hbs';
-import dataPrepareToRender from '../services/renderCard';
-import fetchMovieByTrending from './fetchMovieByTrending';
 import Notiflix from 'notiflix';
 import paginationItems from '../components/pagination';
 import addSpinner from '../services/addSpinner';
@@ -11,9 +8,6 @@ var debounce = require('lodash.debounce');
 
 api.refs.inputRef.addEventListener('input', debounce(onInput, 1000));
 
-// const inputRef = document.querySelector('.input__form');
-
-// const ulRef = document.querySelector('#gallary-list');
 async function onInput(e) {
   e.preventDefault();
   const inputText = e.target.value;
@@ -31,13 +25,7 @@ async function onInput(e) {
     Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
   }
    await cardMarkup(data, genres);
-  // const dataToRender = await dataPrepareToRender(data, genres);
-  // const stringRender = renderMovis(dataToRender);
-  // api.refs.galleryList.innerHTML = stringRender;
-  // if (inputText === '') {
-  //   addSpinner();
-  //   fetchMovieByTrending();
-  // }
+
 }
 
 Notiflix.Notify.init({

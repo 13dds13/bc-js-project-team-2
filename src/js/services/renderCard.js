@@ -27,7 +27,7 @@ export default async function dataPrepareToRender(data, genres) {
         }
       });
     });
-    const newArray = array.slice(0, 3).join(', ');
+    const newArray = array.slice(0, 2).join(', ');
 
     dataToRender.genre_ids = newArray;
     return dataToRender;

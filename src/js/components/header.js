@@ -3,15 +3,10 @@ import storage from './storage';
 import cardMarkup from './../services/cardMarkup';
 import Notiflix from 'notiflix';
 import addSpinner from '../services/addSpinner';
-import dataPrepareToRender from '../services/renderCard';
-import renderMovis from '../../templates/renderMovis.hbs';
 
 import renderMoviesTrending from '../components/renderMoviesTrending';
 
-api.refs.logoLink.addEventListener('click', sendToFirstPage);
-
-
-
+api.refs.logoLink.addEventListener('click', sendToHomePage);
 
 
 const divAnim = document.querySelector('.animation')
@@ -19,10 +14,6 @@ const divAnim = document.querySelector('.animation')
 api.refs.homeLink.addEventListener('click', sendToHomePage);
 api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
 
-function sendToFirstPage(e) {
-  api.page = 1;
-  renderMoviesTrending();
-}
 
 function sendToHomePage(e) {
   addSpinner();
@@ -34,7 +25,8 @@ function sendToHomePage(e) {
   api.refs.libraryLink.classList.remove('current');
   api.refs.header.classList.remove('header__library');
   api.refs.header.classList.add('header__main');
-  fetchMovieByTrending()
+    api.page = 1;
+  renderMoviesTrending();
   divAnim.classList.add('visually-hidden');
 }
 
@@ -64,31 +56,32 @@ async function onWatched(e) {
     divAnim.classList.remove('visually-hidden');
   }
   if (localStorage.watched !== undefined) {
-  const { genres } = await api.genres;
-  const data = storage.load('watched');
-  await cardMarkup(data, genres);
-}
-
-api.refs.queueBtn.addEventListener('click', onQueue);
-
-async function onQueue(e) {
-  addSpinner();
-  api.refs.watchedBtn.classList.add('btn-passive');
-  api.refs.watchedBtn.classList.remove('btn-active');
-  api.refs.queueBtn.classList.add('btn-active');
-  api.refs.queueBtn.classList.remove('btn-passive');
-
-  const { genres } = await api.genres;
-  const data = storage.load('queue');
-  await cardMarkup(data, genres);
-
-  if (localStorage.queue === undefined) {
-    ul.innerHTML = "";
-    divAnim.classList.remove('visually-hidden');
-  }
-  if (localStorage.queue !== undefined) {
     const { genres } = await api.genres;
-    const data = storage.load('queue')
-    await cardMarkup(data, genres)
+    const data = storage.load('watched');
+    await cardMarkup(data, genres);
+  }
+
+  api.refs.queueBtn.addEventListener('click', onQueue);
+
+  async function onQueue(e) {
+    addSpinner();
+    api.refs.watchedBtn.classList.add('btn-passive');
+    api.refs.watchedBtn.classList.remove('btn-active');
+    api.refs.queueBtn.classList.add('btn-active');
+    api.refs.queueBtn.classList.remove('btn-passive');
+
+    const { genres } = await api.genres;
+    const data = storage.load('queue');
+    await cardMarkup(data, genres);
+
+    if (localStorage.queue === undefined) {
+      ul.innerHTML = "";
+      divAnim.classList.remove('visually-hidden');
+    }
+    if (localStorage.queue !== undefined) {
+      const { genres } = await api.genres;
+      const data = storage.load('queue')
+      await cardMarkup(data, genres)
+    }
   }
 }
