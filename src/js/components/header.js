@@ -8,18 +8,13 @@ import renderMovis from '../../templates/renderMovis.hbs';
 
 import renderMoviesTrending from '../components/renderMoviesTrending';
 
-api.refs.logoLink.addEventListener('click', sendToFirstPage);
+api.refs.logoLink.addEventListener('click', renderMoviesTrending);
 
 
 
 
 api.refs.homeLink.addEventListener('click', sendToHomePage);
 api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
-
-function sendToFirstPage(e) {
-  api.page = 1;
-  renderMoviesTrending();
-}
 
 function sendToHomePage(e) {
   addSpinner();
@@ -31,10 +26,9 @@ function sendToHomePage(e) {
   api.refs.libraryLink.classList.remove('current');
   api.refs.header.classList.remove('header__library');
   api.refs.header.classList.add('header__main');
-  fetchMovieByTrending()
+  renderMoviesTrending();
   api.refs.divAnim.classList.add('visually-hidden');
-  api.refs.inputRef
-  console.log(api.refs.inputRef);
+  api.refs.inputRef;
 }
 
 async function sendToLibraryPage(e) {
