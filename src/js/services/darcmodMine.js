@@ -9,15 +9,15 @@ export default class Darkmode {
     }
 
     const defaultOptions = {
-      bottom: '64px',
+      bottom: '12px',
       right: '12px',
       left: 'unset',
-      time: '0.3s',
+      time: '0.4s',
       mixColor: '#ebe5df',
       backgroundColor: '#fff',
       buttonColorDark: '#100f2c',
       buttonColorLight: '#fff',
-      label: '🌓',
+      label: '&#9681',
       saveInCookies: true,
       autoMatchOsTheme: true,
     };
@@ -61,8 +61,11 @@ export default class Darkmode {
 
       .darkmode-toggle {
         background: ${options.buttonColorDark};
+        color: ${options.buttonColorLight};
         width: 3rem;
         height: 3rem;
+        z-index: 1;
+        font-size: 40px;
         position: fixed;
         border-radius: 50%;
         border:none;
@@ -78,6 +81,7 @@ export default class Darkmode {
 
       .darkmode-toggle--white {
         background: ${options.buttonColorLight};
+        color: ${options.buttonColorDark};
       }
 
       .darkmode-toggle--inactive {
