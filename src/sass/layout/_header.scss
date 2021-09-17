@@ -24,6 +24,12 @@ header {
   }
 }
 
+.header-nav__logo {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
 .header-nav__title {
   display: none;
   @include for-tablet {
