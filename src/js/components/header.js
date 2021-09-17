@@ -1,9 +1,11 @@
 import api from '../services/api';
 import storage from './storage';
 import cardMarkup from './fetchMovieByInput';
-import Notiflix from "notiflix";
 import addSpinner from '../services/addSpinner';
+import fetchMovieByTrending from './fetchMovieByTrending';
+
 const ul = document.querySelector('#gallary-list');
+const divAnim = document.querySelector('.animation')
 api.refs.logoLink.addEventListener('click', sendToHomePage);
 api.refs.homeLink.addEventListener('click', sendToHomePage);
 api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
@@ -18,6 +20,8 @@ function sendToHomePage(e) {
   api.refs.libraryLink.classList.remove('current');
   api.refs.header.classList.remove('header__library');
   api.refs.header.classList.add('header__main');
+  fetchMovieByTrending()
+  divAnim.classList.add('visually-hidden');
 }
 
 async function sendToLibraryPage(e) {
@@ -30,12 +34,7 @@ async function sendToLibraryPage(e) {
   api.refs.libraryLink.classList.add('current');
   api.refs.header.classList.add('header__library');
   api.refs.header.classList.remove('header__main');
-
-  // const watchedLoad = storage.load('watched')
-  // const queueLoad = storage.load('queue')
-  // const localStorageAll = [...watchedLoad, ...queueLoad]
-  // const { genres } = await api.fetchGenres();
-  // cardMarkup(localStorageAll, genres)
+  onWatched()
 }
 
 api.refs.watchedBtn.addEventListener('click', onWatched);
@@ -46,11 +45,17 @@ async function onWatched(e) {
   api.refs.watchedBtn.classList.add('btn-active');
   api.refs.queueBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-passive');
-
+  if (localStorage.watched === undefined) {
+    ul.innerHTML = "";
+    divAnim.classList.remove('visually-hidden');
+  }
+  if (localStorage.watched !== undefined) {
   const { genres } = await api.genres;
   const data = storage.load('watched')
   await cardMarkup(data, genres)
+  }
 }
+
 api.refs.queueBtn.addEventListener('click', onQueue);
 
 async function onQueue(e) {
@@ -59,8 +64,13 @@ async function onQueue(e) {
   api.refs.watchedBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-active');
   api.refs.queueBtn.classList.remove('btn-passive');
-
-  const { genres } = await api.genres;
-  const data = storage.load('queue')
-  await cardMarkup(data, genres)
+  if (localStorage.queue === undefined) {
+    ul.innerHTML = "";
+    divAnim.classList.remove('visually-hidden');
+  }
+  if (localStorage.queue !== undefined) {
+    const { genres } = await api.genres;
+    const data = storage.load('queue')
+    await cardMarkup(data, genres)
+  }
 }
