@@ -1,8 +1,10 @@
 import api from '../services/api';
 import storage from './storage';
-import cardMarkup from './fetchMovieByInput';
+import cardMarkup from './../services/cardMarkup';
 import Notiflix from 'notiflix';
 import addSpinner from '../services/addSpinner';
+import dataPrepareToRender from '../services/renderCard';
+import renderMovis from '../../templates/renderMovis.hbs';
 
 import renderMoviesTrending from '../components/renderMoviesTrending';
 const ul = document.querySelector('#gallary-list');
