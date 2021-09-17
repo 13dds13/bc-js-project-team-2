@@ -63,31 +63,32 @@ async function onWatched(e) {
     api.refs.divAnim.classList.remove('visually-hidden');
   }
   if (localStorage.watched !== undefined) {
-  const { genres } = await api.genres;
-  const data = storage.load('watched');
-  await cardMarkup(data, genres);
-}
-
-api.refs.queueBtn.addEventListener('click', onQueue);
-
-async function onQueue(e) {
-  addSpinner();
-  api.refs.watchedBtn.classList.add('btn-passive');
-  api.refs.watchedBtn.classList.remove('btn-active');
-  api.refs.queueBtn.classList.add('btn-active');
-  api.refs.queueBtn.classList.remove('btn-passive');
-
-  const { genres } = await api.genres;
-  const data = storage.load('queue');
-  await cardMarkup(data, genres);
-
-  if (localStorage.queue === undefined) {
-    api.refs.galleryList.innerHTML = "";
-    api.refs.divAnim.classList.remove('visually-hidden');
-  }
-  if (localStorage.queue !== undefined) {
     const { genres } = await api.genres;
-    const data = storage.load('queue')
-    await cardMarkup(data, genres)
+    const data = storage.load('watched');
+    await cardMarkup(data, genres);
+  }
+
+  api.refs.queueBtn.addEventListener('click', onQueue);
+
+  async function onQueue(e) {
+    addSpinner();
+    api.refs.watchedBtn.classList.add('btn-passive');
+    api.refs.watchedBtn.classList.remove('btn-active');
+    api.refs.queueBtn.classList.add('btn-active');
+    api.refs.queueBtn.classList.remove('btn-passive');
+
+    const { genres } = await api.genres;
+    const data = storage.load('queue');
+    await cardMarkup(data, genres);
+
+    if (localStorage.queue === undefined) {
+      api.refs.galleryList.innerHTML = "";
+      api.refs.divAnim.classList.remove('visually-hidden');
+    }
+    if (localStorage.queue !== undefined) {
+      const { genres } = await api.genres;
+      const data = storage.load('queue')
+      await cardMarkup(data, genres)
+    }
   }
 }
