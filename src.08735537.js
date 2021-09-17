@@ -51,4 +51,4 @@ var t=arguments[3],e="Expected a function",n=NaN,r="[object Symbol]",i=/^\s+|\s+
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/fetchMovieByInput.js"),require("./js/components/renderMoviesTrending"),require("./js/components/fetchMovieForModal"),require("./js/components/pagination"),require("./js/components/header.js"),require("./js/components/team.js"),require("./js/services/darcmodMine"),require("./js/components/btnUp");
 },{"./sass/main.scss":"clu1","./js/components/fetchMovieByInput.js":"tDvy","./js/components/renderMoviesTrending":"JXTY","./js/components/fetchMovieForModal":"U2uj","./js/components/pagination":"H1oe","./js/components/header.js":"NNYM","./js/components/team.js":"YkC3","./js/services/darcmodMine":"Fm3s","./js/components/btnUp":"sfjS"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.8641355e.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.08735537.js.map
