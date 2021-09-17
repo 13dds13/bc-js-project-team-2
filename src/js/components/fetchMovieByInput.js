@@ -11,33 +11,26 @@ var debounce = require('lodash.debounce');
 
 api.refs.inputRef.addEventListener('input', debounce(onInput, 1000));
 
-// const inputRef = document.querySelector('.input__form');
-
-// const ulRef = document.querySelector('#gallary-list');
 async function onInput(e) {
   e.preventDefault();
   const inputText = e.target.value;
   if (!inputText) {
+        api.refs.divAnim.classList.add('visually-hidden');
     renderMoviesTrending();
     return
   }
 
+      api.refs.divAnim.classList.add('visually-hidden');
   addSpinner();
   const { genres } = await api.genres;
   const allData = await api.fetchMovieByInput(inputText);
   const { results: data } = allData;
   paginationItems(allData.total_results, inputText);
   if (data.length === 0) {
+        api.refs.divAnim.classList.remove('visually-hidden');
     Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
   }
    await cardMarkup(data, genres);
-  // const dataToRender = await dataPrepareToRender(data, genres);
-  // const stringRender = renderMovis(dataToRender);
-  // api.refs.galleryList.innerHTML = stringRender;
-  // if (inputText === '') {
-  //   addSpinner();
-  //   fetchMovieByTrending();
-  // }
 }
 
 Notiflix.Notify.init({

@@ -13,9 +13,6 @@ api.refs.logoLink.addEventListener('click', sendToFirstPage);
 
 
 
-
-const divAnim = document.querySelector('.animation')
-
 api.refs.homeLink.addEventListener('click', sendToHomePage);
 api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
 
@@ -35,7 +32,9 @@ function sendToHomePage(e) {
   api.refs.header.classList.remove('header__library');
   api.refs.header.classList.add('header__main');
   fetchMovieByTrending()
-  divAnim.classList.add('visually-hidden');
+  api.refs.divAnim.classList.add('visually-hidden');
+  api.refs.inputRef
+  console.log(api.refs.inputRef);
 }
 
 async function sendToLibraryPage(e) {
@@ -60,8 +59,8 @@ async function onWatched(e) {
   api.refs.queueBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-passive');
   if (localStorage.watched === undefined) {
-    ul.innerHTML = "";
-    divAnim.classList.remove('visually-hidden');
+    api.refs.galleryList.innerHTML = "";
+    api.refs.divAnim.classList.remove('visually-hidden');
   }
   if (localStorage.watched !== undefined) {
   const { genres } = await api.genres;
@@ -83,8 +82,8 @@ async function onQueue(e) {
   await cardMarkup(data, genres);
 
   if (localStorage.queue === undefined) {
-    ul.innerHTML = "";
-    divAnim.classList.remove('visually-hidden');
+    api.refs.galleryList.innerHTML = "";
+    api.refs.divAnim.classList.remove('visually-hidden');
   }
   if (localStorage.queue !== undefined) {
     const { genres } = await api.genres;
