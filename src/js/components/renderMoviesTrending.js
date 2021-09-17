@@ -7,6 +7,7 @@ import cardMarkup from './../services/cardMarkup';
 
 async function renderMoviesTrending() {
   try {
+    api.refs.divAnim.classList.add('visually-hidden');
     addSpinner();
     const { genres } = await api.genres;
     const allData = await api.fetchMovieByTrending();
