@@ -30,12 +30,10 @@ class StorageService {
 
   addListenerToBtns() {
     this.refs.btnWrap.addEventListener('click', this.onBtnClick.bind(this));
-    console.log('+');
   }
 
   removeListenerFromBtns() {
     this.refs.btnWrap.removeEventListener('click', this.onBtnClick.bind(this));
-    console.log('-');
   }
 
   onBtnClick(e) {
@@ -49,18 +47,19 @@ class StorageService {
       if (watchedBtn.textContent === 'add to watched') {
         this.setDataToLocalStorage('watched', movieData);
         watchedBtn.textContent = 'remove from watched';
+        this.btnColorSwitcher(watchedBtn);
         if (isAlreadyInQueue) {
           this.removeMovieFromStorage('queue', movieData.id);
           queueBtn.textContent = 'add to queue';
+          this.btnColorSwitcher(queueBtn);
         };
-        console.log('wa');
         return;
       };
         
       if (watchedBtn.textContent === 'remove from watched') {
         this.removeMovieFromStorage('watched', movieData.id);
         watchedBtn.textContent = 'add to watched';
-        console.log('wr');
+        this.btnColorSwitcher(watchedBtn);
         return;
       };
   };
@@ -70,18 +69,19 @@ class StorageService {
       if (queueBtn.textContent === 'add to queue') {
         this.setDataToLocalStorage('queue', movieData);
         queueBtn.textContent = 'remove from queue';
+        this.btnColorSwitcher(queueBtn);
         if (isAlreadyInWatched) {
           this.removeMovieFromStorage('watched', movieData.id);
           watchedBtn.textContent = 'add to watched';
+          this.btnColorSwitcher(watchedBtn);
         };
-        console.log('qa');
         return;
       };
         
       if (queueBtn.textContent === 'remove from queue') {
         this.removeMovieFromStorage('queue', movieData.id);
         queueBtn.textContent = 'add to queue';
-        console.log('qr');
+        this.btnColorSwitcher(queueBtn);
         return;
       };
     }
@@ -124,6 +124,19 @@ class StorageService {
     if (newData) {
       localStorage.setItem(type, JSON.stringify(newData));
     };
+  }
+
+  btnColorSwitcher(btn) {
+    btn.classList.toggle('modal__btn_accent-style');
+  }
+
+  btnColorSetter(btn) {
+    btn.classList.add('modal__btn_accent-style');
+  }
+
+  removeBtnColor() {
+    watchedBtn.classList.remove('modal__btn_accent-style');
+    queueBtn.classList.remove('modal__btn_accent-style');
   }
 }
 
