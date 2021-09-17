@@ -7,8 +7,15 @@ import dataPrepareToRender from '../services/renderCard';
 import renderMovis from '../../templates/renderMovis.hbs';
 
 import renderMoviesTrending from '../components/renderMoviesTrending';
-const ul = document.querySelector('#gallary-list');
+
 api.refs.logoLink.addEventListener('click', sendToFirstPage);
+
+
+
+
+
+const divAnim = document.querySelector('.animation')
+
 api.refs.homeLink.addEventListener('click', sendToHomePage);
 api.refs.libraryLink.addEventListener('click', sendToLibraryPage);
 
@@ -27,6 +34,8 @@ function sendToHomePage(e) {
   api.refs.libraryLink.classList.remove('current');
   api.refs.header.classList.remove('header__library');
   api.refs.header.classList.add('header__main');
+  fetchMovieByTrending()
+  divAnim.classList.add('visually-hidden');
 }
 
 async function sendToLibraryPage(e) {
@@ -39,12 +48,7 @@ async function sendToLibraryPage(e) {
   api.refs.libraryLink.classList.add('current');
   api.refs.header.classList.add('header__library');
   api.refs.header.classList.remove('header__main');
-
-  // const watchedLoad = storage.load('watched')
-  // const queueLoad = storage.load('queue')
-  // const localStorageAll = [...watchedLoad, ...queueLoad]
-  // const { genres } = await api.fetchGenres();
-  // cardMarkup(localStorageAll, genres)
+  onWatched()
 }
 
 api.refs.watchedBtn.addEventListener('click', onWatched);
@@ -55,11 +59,16 @@ async function onWatched(e) {
   api.refs.watchedBtn.classList.add('btn-active');
   api.refs.queueBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-passive');
-
+  if (localStorage.watched === undefined) {
+    ul.innerHTML = "";
+    divAnim.classList.remove('visually-hidden');
+  }
+  if (localStorage.watched !== undefined) {
   const { genres } = await api.genres;
   const data = storage.load('watched');
   await cardMarkup(data, genres);
 }
+
 api.refs.queueBtn.addEventListener('click', onQueue);
 
 async function onQueue(e) {
@@ -72,4 +81,14 @@ async function onQueue(e) {
   const { genres } = await api.genres;
   const data = storage.load('queue');
   await cardMarkup(data, genres);
+
+  if (localStorage.queue === undefined) {
+    ul.innerHTML = "";
+    divAnim.classList.remove('visually-hidden');
+  }
+  if (localStorage.queue !== undefined) {
+    const { genres } = await api.genres;
+    const data = storage.load('queue')
+    await cardMarkup(data, genres)
+  }
 }

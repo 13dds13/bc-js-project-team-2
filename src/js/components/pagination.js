@@ -1,5 +1,4 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
 import api from '../services/api';
 import dataPrepareToRender from '../services/renderCard';
 const container = document.getElementById('tui-pagination-container');
