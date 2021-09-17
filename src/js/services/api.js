@@ -17,6 +17,7 @@ class ApiService {
       galleryList: document.querySelector('#gallary-list'),
       modal: document.querySelector('.backdrop'),
       modalCloseBtn: document.querySelector('.modal__btn-close'),
+      inputRef: document.querySelector('.input__form'),
 
       logoLink: document.querySelector('#nav-logo'),
       homeLink: document.querySelector('#home-page'),
@@ -33,7 +34,7 @@ class ApiService {
     this.genres = this.fetchGenres();
       }
   
-  async fetchMovieByInput(input = 'cat') {
+  async fetchMovieByInput(input) {
     const searchParams = new URLSearchParams({
       api_key: [this.API_KEY],
       language: [this.LANGUAGE],
@@ -50,6 +51,7 @@ class ApiService {
   async fetchMovieByTrending() {
     const searchParams = new URLSearchParams({
       api_key: [this.API_KEY],
+      page: [this._page],
     });
 
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byTrending}${searchParams}`);
