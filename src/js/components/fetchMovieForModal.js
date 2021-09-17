@@ -1,5 +1,6 @@
 import api from '../services/api'
 import renderMovieDataToModal from '../../templates/renderMovieForModal.hbs'
+import storageSetter from '../services/storageSetter'
 
 const { refs: {
     modalMarkupContainer,
@@ -8,11 +9,17 @@ const { refs: {
     modalCloseBtn,
 } } = api;
 
+const { queueBtn, watchedBtn } = storageSetter.refs;
+
 galleryList.addEventListener('click', onMovieCardClick);
+storageSetter.addListenerToBtns();
 
 function onMovieCardClick(e) {
     if (e.target === e.currentTarget) return;
-    const movieId = e.target.closest('li').dataset.movieid;
+    const movieId = Number(e.target.closest('li').dataset.movieid);
+    const {isAlreadyInWatched, isAlreadyInQueue} = storageSetter.checkUsersLibrary(movieId);
+    watchedBtn.textContent = isAlreadyInWatched ? 'remove from watched' : 'add to watched';
+    queueBtn.textContent = isAlreadyInQueue ? 'remove from queue' : 'add to queue';
     movieDataById(movieId);
 };
 
@@ -21,6 +28,7 @@ function onModalClick(e) {
         modal.classList.add('visually-hidden');
         modal.removeEventListener('click', onModalClick);
         document.querySelector('body').classList.remove('body_modal-open');
+        window.removeEventListener('keydown', onKeydown);
     }
 }
 
@@ -39,9 +47,9 @@ async function movieDataById(movieId) {
 };
 
 function onKeydown(e) {
-    if (e.key === 'Escape') {
-        modal.classList.add('visually-hidden');
-        window.removeEventListener('keydown', onKeydown);
-        document.querySelector('body').classList.remove('body_modal-open');
-    };
+    if (e.key !== 'Escape') return;
+    
+    modal.classList.add('visually-hidden');
+    window.removeEventListener('keydown', onKeydown);
+    document.querySelector('body').classList.remove('body_modal-open');
 }
