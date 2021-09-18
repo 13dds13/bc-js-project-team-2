@@ -60,6 +60,7 @@ class StorageService {
         this.removeMovieFromStorage('watched', movieData.id);
         watchedBtn.textContent = 'add to watched';
         this.btnColorSwitcher(watchedBtn);
+        localStorage.setItem('watchedChange', '1');
         return;
       };
   };
@@ -82,6 +83,7 @@ class StorageService {
         this.removeMovieFromStorage('queue', movieData.id);
         queueBtn.textContent = 'add to queue';
         this.btnColorSwitcher(queueBtn);
+        localStorage.setItem('queueChange', '0');
         return;
       };
     }
@@ -90,7 +92,7 @@ class StorageService {
   getCurrentMovieData() {
     const { titleYearId, img, vote, genre } = this.movieRefs;
     const genresId = [];
-    genre.forEach(item => genresId.push(Number(item.dataset.genreid)));
+    [...genre].map(item => genresId.push(Number(item.dataset.genreid)));
     const movieData = {
       id: Number(titleYearId.dataset.id),
       release_date: titleYearId.dataset.year,

@@ -64,7 +64,7 @@ async function onWatched(e) {
       console.log(error);
     }
   }
-
+}
   api.refs.queueBtn.addEventListener('click', onQueue);
   async function onQueue(e) {
     addSpinner();
@@ -91,4 +91,6 @@ async function onWatched(e) {
       }
     }
   }
-}
+
+
+export { onWatched, onQueue };

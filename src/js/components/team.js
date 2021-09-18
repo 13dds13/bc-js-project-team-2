@@ -12,7 +12,6 @@ function toggleTeam() {
 }
 
 function clEsc(e) {
-  console.log(e.code);
   if (e.code === 'Escape') {
     api.refs.teamModal.classList.add('visually-hidden');
     window.removeEventListener('keydown', clEsc);
