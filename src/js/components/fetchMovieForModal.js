@@ -8,6 +8,7 @@ const {
     galleryList,
     modal,
     modalCloseBtn,
+    backgroundBlur,
 } = api.refs;
 
 const { queueBtn, watchedBtn } = storageSetter.refs;
@@ -38,9 +39,10 @@ async function movieDataById(movieId) {
         }
         const markup = renderMovieDataToModal(preparedMovieData);
         modalMarkupContainer.innerHTML = markup;
+        backgroundBlur.classList.add('background-blur');
         modal.classList.remove('visually-hidden');
         modal.addEventListener('click', eventsOnModal);
-        document.body.classList.add('body_modal-open');
+        document.body.classList.add('body-modal-open');
         window.addEventListener('keydown', eventsOnModal);
     } catch (error) {
         console.log(error);
@@ -52,8 +54,9 @@ function eventsOnModal(e) {
         e.target.closest('button') === modalCloseBtn ||
         e.key === 'Escape') {
         modal.classList.add('visually-hidden');
+        backgroundBlur.classList.remove('background-blur');
         modal.removeEventListener('click', eventsOnModal);
-        document.body.classList.remove('body_modal-open');
+        document.body.classList.remove('body-modal-open');
         window.removeEventListener('keydown', eventsOnModal);
         storageSetter.removeBtnColor();
         if (document.querySelector('#watched-btn.btn-active')) {
