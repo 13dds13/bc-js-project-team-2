@@ -30,63 +30,56 @@
 
   @include for-tablet {
     top: 230px;
+    width: 618px;
     padding: 42px 29px;
   }
 
   @include for-desktop {
     top: 100px;
+    width: 882px;
   }
+}
+.modal__vote {
+  display: inline-block;
+  height: 16px;
+  width: 32px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: $accent-color;
+}
 
-  &__vote {
-    display: inline-block;
-    height: 16px;
-    width: 32px;
-    text-align: center;
-    border-radius: 5px;
-    background-color: $accent-color;
-  }
-
-  .modal__movie-container {
-    margin-bottom: 21px;
-    font-weight: 500;
-    color: $secondary-text-colour;
-
-    @include for-tablet {
-      display: flex;
-    }
-  }
-
-  .modal__poster {
-    border-radius: 5px;
-    margin-bottom: 30px;
-    object-fit: contain;
-
-    @include for-tablet {
-      margin-bottom: 0;
-      width: 264px;
-      height: 373px;
-      margin-right: 32px;
-    }
-
-    @include for-desktop {
-      width: 396px;
-      height: 478px;
-    }
-  }
-
-  &__title,
-  &__about,
-  &__btn {
-    text-transform: uppercase;
-  }
+.modal__movie-container {
+  margin-bottom: 21px;
+  font-weight: 500;
+  color: $secondary-text-colour;
 
   @include for-tablet {
-    width: 618px;
+    display: flex;
+  }
+}
+
+.modal__poster {
+  border-radius: 5px;
+  margin-bottom: 30px;
+  object-fit: contain;
+
+  @include for-tablet {
+    margin-bottom: 0;
+    width: 264px;
+    height: 373px;
+    margin-right: 32px;
   }
 
   @include for-desktop {
-    width: 882px;
+    width: 396px;
+    height: 478px;
   }
+}
+
+.modal__title,
+.modal__about,
+.modal__btn {
+  text-transform: uppercase;
 }
 
 .modal__title {

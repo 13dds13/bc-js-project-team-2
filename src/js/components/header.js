@@ -13,6 +13,8 @@ function sendToHomePage(e) {
   addSpinner();
   e.preventDefault();
   api.refs.searchFilm.classList.remove('visually-hidden');
+  api.refs.watchedBtn.classList.remove('btn-active');
+  api.refs.queueBtn.classList.remove('btn-active');
   api.refs.watchedBtn.classList.add('visually-hidden');
   api.refs.queueBtn.classList.add('visually-hidden');
   api.refs.homeLink.classList.add('current');
@@ -28,6 +30,7 @@ async function sendToLibraryPage(e) {
   addSpinner();
   e.preventDefault();
   api.refs.searchFilm.classList.add('visually-hidden');
+  api.refs.watchedBtn.classList.add('btn-active');
   api.refs.watchedBtn.classList.remove('visually-hidden');
   api.refs.queueBtn.classList.remove('visually-hidden');
   api.refs.homeLink.classList.remove('current');
@@ -64,7 +67,7 @@ async function onWatched(e) {
       console.log(error);
     }
   }
-
+}
   api.refs.queueBtn.addEventListener('click', onQueue);
   async function onQueue(e) {
     addSpinner();
@@ -91,4 +94,6 @@ async function onWatched(e) {
       }
     }
   }
-}
+
+
+export { onWatched, onQueue };
