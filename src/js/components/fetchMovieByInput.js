@@ -1,27 +1,23 @@
 import api from '../services/api';
-import renderMovis from '../../templates/renderMovis.hbs';
-import dataPrepareToRender from '../services/renderCard';
-import fetchMovieByTrending from './fetchMovieByTrending';
 import Notiflix from 'notiflix';
 import paginationItems from '../components/pagination';
-import addSpinner from '../services/addSpinner';
 import renderMoviesTrending from './renderMoviesTrending';
 import cardMarkup from '../services/cardMarkup';
+import pageReset from '../services/pageReset';
 var debounce = require('lodash.debounce');
 
-api.refs.inputRef.addEventListener('input', debounce(onInput, 1000));
+const { form, pagination } = api.refs;
+
+api.refs.inputRef.addEventListener('input', debounce(onInput, 350));
 
 async function onInput(e) {
   e.preventDefault();
   const inputText = e.target.value;
-  api.page = 1;
-  api.refs.divAnim.classList.add('visually-hidden');
+  pageReset();
   if (!inputText) {
     renderMoviesTrending();
     return;
   }
-
-  addSpinner();
 
   try {
     const { genres } = await api.genres;
@@ -29,10 +25,10 @@ async function onInput(e) {
     const { results: data } = allData;
     paginationItems(allData.total_results, inputText);
     if (data.length === 0) {
-      api.refs.divAnim.classList.remove('visually-hidden');
+      divAnim.classList.remove('visually-hidden');
       Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
-      api.refs.form.reset();
-      api.refs.pagination.textContent = '';
+      form.reset();
+      pagination.textContent = '';
     }
     await cardMarkup(data, genres);
   } catch (error) {
