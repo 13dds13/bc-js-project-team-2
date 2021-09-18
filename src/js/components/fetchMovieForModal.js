@@ -56,7 +56,7 @@ function eventsOnModal(e) {
         document.body.classList.remove('body_modal-open');
         window.removeEventListener('keydown', eventsOnModal);
         storageSetter.removeBtnColor();
-        if (!document.querySelector('#watched-btn.visually-hidden') && !document.querySelector('#watched-btn.btn-passive')) {
+        if (document.querySelector('#watched-btn.btn-active')) {
             const wasChanges = localStorage.getItem('wasChanges');
             if (wasChanges) {
                 onWatched();
