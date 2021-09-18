@@ -37,6 +37,11 @@ function paginationItems(total_results, inputText) {
         });
       });
     }
+
+    api.refs.galleryList.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   });
 }
 
