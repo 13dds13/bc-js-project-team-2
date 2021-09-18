@@ -56,19 +56,18 @@ function eventsOnModal(e) {
         document.body.classList.remove('body_modal-open');
         window.removeEventListener('keydown', eventsOnModal);
         storageSetter.removeBtnColor();
-        if (document.querySelector('#watched-btn.btn-active')) {
-            const wasChanges = localStorage.getItem('watchedChange');
+        if (document.querySelector('#watched-btn.btn-active') && document.querySelector('#watched-btn.btn-active') !== document.querySelector('#watched-btn.visually-hidden')) {
+            const wasChanges = localStorage.getItem('wasChanges');
             if (wasChanges) {
                 onWatched();
-                return;
             };
         };
         if (document.querySelector('#queue-btn.btn-active')) {
-            const wasChanges = localStorage.getItem('queueChange');
+            const wasChanges = localStorage.getItem('wasChanges');
             if (wasChanges) {
                 onQueue();
-                return;
             };
         };
+        localStorage.removeItem('wasChanges');
     };
 };
