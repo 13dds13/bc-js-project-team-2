@@ -18,6 +18,9 @@ class ApiService {
       modal: document.querySelector('.backdrop'),
       modalCloseBtn: document.querySelector('.modal__btn-close'),
       inputRef: document.querySelector('.input__form'),
+      form: document.querySelector('#form'),
+      pagination: document.querySelector('#tui-pagination-container'),
+      btn_404: document.querySelector('#btn_404'),
 
       logoLink: document.querySelector('#nav-logo'),
       homeLink: document.querySelector('#home-page'),
@@ -34,15 +37,15 @@ class ApiService {
       inputRef: document.querySelector('.input__form'),
     };
     this.genres = this.fetchGenres();
-      }
-  
+  }
+
   async fetchMovieByInput(input) {
     const searchParams = new URLSearchParams({
-      api_key: [this.API_KEY],
-      language: [this.LANGUAGE],
-      query: [input],
-      page: [this._page],
-      include_adult: [this.INCLUDE_ADULT],
+      api_key: this.API_KEY,
+      language: this.LANGUAGE,
+      query: input,
+      page: this._page,
+      include_adult: this.INCLUDE_ADULT,
     });
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byInput}${searchParams}`);
     if (res.ok) return res.json();
@@ -52,8 +55,8 @@ class ApiService {
 
   async fetchMovieByTrending() {
     const searchParams = new URLSearchParams({
-      api_key: [this.API_KEY],
-      page: [this._page],
+      api_key: this.API_KEY,
+      page: this._page,
     });
 
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byTrending}${searchParams}`);
@@ -65,8 +68,8 @@ class ApiService {
 
   async fetchMovieForModal(movieId) {
     const searchParams = new URLSearchParams({
-      api_key: [this.API_KEY],
-      language: [this.LANGUAGE],
+      api_key: this.API_KEY,
+      language: this.LANGUAGE,
     });
 
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.byId}${movieId}?${searchParams}`);
@@ -77,8 +80,8 @@ class ApiService {
 
   async fetchGenres() {
     const searchParams = new URLSearchParams({
-      api_key: [this.API_KEY],
-      language: [this.LANGUAGE],
+      api_key: this.API_KEY,
+      language: this.LANGUAGE,
     });
 
     const res = await fetch(`${this.BASE_URL}${this.SEARCH_TYPE.genres}?${searchParams}`);

@@ -14,23 +14,30 @@ api.refs.inputRef.addEventListener('input', debounce(onInput, 1000));
 async function onInput(e) {
   e.preventDefault();
   const inputText = e.target.value;
+  api.page = 1;
+  api.refs.divAnim.classList.add('visually-hidden');
   if (!inputText) {
-        api.refs.divAnim.classList.add('visually-hidden');
     renderMoviesTrending();
-    return
+    return;
   }
 
-      api.refs.divAnim.classList.add('visually-hidden');
   addSpinner();
-  const { genres } = await api.genres;
-  const allData = await api.fetchMovieByInput(inputText);
-  const { results: data } = allData;
-  paginationItems(allData.total_results, inputText);
-  if (data.length === 0) {
-        api.refs.divAnim.classList.remove('visually-hidden');
-    Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
+
+  try {
+    const { genres } = await api.genres;
+    const allData = await api.fetchMovieByInput(inputText);
+    const { results: data } = allData;
+    paginationItems(allData.total_results, inputText);
+    if (data.length === 0) {
+      api.refs.divAnim.classList.remove('visually-hidden');
+      Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
+      api.refs.form.reset();
+      api.refs.pagination.textContent = '';
+    }
+    await cardMarkup(data, genres);
+  } catch (error) {
+    console.log(error);
   }
-   await cardMarkup(data, genres);
 }
 
 Notiflix.Notify.init({
@@ -43,4 +50,3 @@ Notiflix.Notify.init({
   position: 'center-top',
   clickToClose: true,
 });
-

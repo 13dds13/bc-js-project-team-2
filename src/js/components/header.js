@@ -4,9 +4,11 @@ import cardMarkup from './../services/cardMarkup';
 import addSpinner from '../services/addSpinner';
 import renderMoviesTrending from '../components/renderMoviesTrending';
 
-api.refs.logoLink.addEventListener('click', renderMoviesTrending);
+api.refs.logoLink.addEventListener('click', sendToHomePage);
 
 api.refs.homeLink.addEventListener('click', sendToHomePage);
+
+api.refs.btn_404.addEventListener('click', sendToHomePage);
 function sendToHomePage(e) {
   addSpinner();
   e.preventDefault();
@@ -32,7 +34,8 @@ async function sendToLibraryPage(e) {
   api.refs.libraryLink.classList.add('current');
   api.refs.header.classList.add('header__library');
   api.refs.header.classList.remove('header__main');
-  onWatched()
+  onWatched();
+  api.refs.pagination.textContent = '';
 }
 
 api.refs.watchedBtn.addEventListener('click', onWatched);
@@ -43,17 +46,22 @@ async function onWatched(e) {
   api.refs.queueBtn.classList.remove('btn-active');
   api.refs.queueBtn.classList.add('btn-passive');
   if (localStorage.watched === undefined || localStorage.watched === []) {
-    api.refs.galleryList.innerHTML = "";
+    api.refs.galleryList.innerHTML = '';
     api.refs.divAnim.classList.remove('visually-hidden');
   }
   if (localStorage.watched !== undefined) {
     api.refs.divAnim.classList.add('visually-hidden');
-    const { genres } = await api.genres;
-    const data = storage.load('watched');
-    await cardMarkup(data, genres);
-    if (data.length === 0) {
-        api.refs.galleryList.innerHTML = "";
-      api.refs.divAnim.classList.remove('visually-hidden');
+    try {
+      const { genres } = await api.genres;
+      const data = storage.load('watched');
+      await cardMarkup(data, genres);
+      api.refs.pagination.textContent = '';
+      if (data.length === 0) {
+        api.refs.galleryList.innerHTML = '';
+        api.refs.divAnim.classList.remove('visually-hidden');
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -65,17 +73,21 @@ async function onWatched(e) {
     api.refs.queueBtn.classList.add('btn-active');
     api.refs.queueBtn.classList.remove('btn-passive');
     if (localStorage.queue === undefined) {
-      api.refs.galleryList.innerHTML = "";
+      api.refs.galleryList.innerHTML = '';
       api.refs.divAnim.classList.remove('visually-hidden');
     }
     if (localStorage.queue !== undefined) {
       api.refs.divAnim.classList.add('visually-hidden');
-      const { genres } = await api.genres;
-      const data = storage.load('queue')
-      await cardMarkup(data, genres)
-      if (data.length === 0) {
-        api.refs.galleryList.innerHTML = "";
-      api.refs.divAnim.classList.remove('visually-hidden');
+      try {
+        const { genres } = await api.genres;
+        const data = storage.load('queue');
+        await cardMarkup(data, genres);
+        if (data.length === 0) {
+          api.refs.galleryList.innerHTML = '';
+          api.refs.divAnim.classList.remove('visually-hidden');
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
   }

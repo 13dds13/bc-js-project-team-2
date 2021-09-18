@@ -7,12 +7,6 @@
         </svg>
         <h1 class="header-nav__title">Filmoteka</h1>
       </button>
-      <!-- <a href="./index.html" class="header-nav__logo" id="nav-logo">
-        <svg class="header-nav__icon" width="24" height="24">
-          <use href="./images/sprite.svg#film_logo"></use>
-        </svg>
-        <h1 class="header-nav__title">Filmoteka</h1>
-      </a> -->
       <ul class="header-nav__list">
         <li class="header-nav__list-item">
           <a href="./index.html" class="header-nav__list-item-link current" id="home-page">Home</a>
@@ -24,7 +18,8 @@
     </div>
     <div class="search-film__wrap">
       <div class="search-film__input">
-        <input
+   <form id='form'>
+          <input
           type="text"
           name="search"
           autocomplete="off"
@@ -36,6 +31,7 @@
             <use href="./images/sprite.svg#search"></use>
           </svg>
         </span>
+   </form>
       </div>
     </div>
     <div class="search-film__notifications">
