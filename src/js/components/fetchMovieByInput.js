@@ -6,9 +6,9 @@ import cardMarkup from '../services/cardMarkup';
 import pageReset from '../services/pageReset';
 var debounce = require('lodash.debounce');
 
-const { form, pagination } = api.refs;
+const { form, pagination, divAnim } = api.refs;
 
-api.refs.inputRef.addEventListener('input', debounce(onInput, 350));
+api.refs.inputRef.addEventListener('input', debounce(onInput, 500));
 
 async function onInput(e) {
   e.preventDefault();
@@ -25,6 +25,7 @@ async function onInput(e) {
     const { results: data } = allData;
     paginationItems(allData.total_results, inputText);
     if (data.length === 0) {
+      console.log(123)
       divAnim.classList.remove('visually-hidden');
       Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
       form.reset();

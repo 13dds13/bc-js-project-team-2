@@ -50,10 +50,9 @@ async function movieDataById(movieId) {
     modal.addEventListener('click', eventsOnModal);
     document.body.classList.add('body-modal-open');
     window.addEventListener('keydown', eventsOnModal);
-  } catch (error) {
-    console.log(error);
-  }
 }
+
+
 
 function eventsOnModal(e) {
     if (e.target === e.currentTarget ||

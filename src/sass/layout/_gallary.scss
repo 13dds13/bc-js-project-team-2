@@ -1,3 +1,8 @@
+.movi-card:nth-last-child(-n + 2) {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .movi-card {
   border-radius: 5px;
   background-color: $main-bg-text-color;
