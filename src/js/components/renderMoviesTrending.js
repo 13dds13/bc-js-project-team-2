@@ -17,6 +17,7 @@ async function renderMoviesTrending() {
     const { results: data } = allData;
     paginationItems(allData.total_results);
     await cardMarkup(data, genres);
+
   } catch (error) {
     console.log(error);
   }

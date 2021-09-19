@@ -6,8 +6,9 @@ class ApiService {
   SEARCH_TYPE = {
     byInput: 'search/movie?',
     byTrending: 'trending/movie/week?',
-    byId: `/movie/`,
+    byId: `movie/`,
     genres: `genre/movie/list`,
+    trailer: `/videos`,
   };
 
   constructor() {
@@ -92,6 +93,20 @@ class ApiService {
   }
   set page(newPage) {
     this._page = newPage;
+  }
+
+  async fetchTrailer(movieId) {
+    const searchParams = new URLSearchParams({
+      api_key: this.API_KEY,
+      language: this.LANGUAGE,
+    });
+
+    const res = await fetch(
+      `${this.BASE_URL}${this.SEARCH_TYPE.byId}${movieId}${this.SEARCH_TYPE.trailer}?${searchParams}`,
+    );
+    if (res.ok) return await res.json();
+
+    return Promise.reject('Sorry! Something went wrong :(');
   }
 }
 

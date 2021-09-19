@@ -1,11 +1,13 @@
 import * as basicLightbox from 'basiclightbox';
+import api from '../services/api';
 
 const trailerPlay = document.querySelector('#trailerdBtn');
 
-trailerPlay.addEventListener('click', () => onShowTrailer(movieId));
+trailerPlay.addEventListener('click', () => onShowTrailer(550));
 
 async function onShowTrailer(id) {
-  const result = await ApiServer.fetchVideo(id);
+  const result = await api.fetchTrailer(id);
+  console.log(result.results[0].key);
   if (!result.results) {
     return;
   }
