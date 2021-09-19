@@ -18,20 +18,20 @@
     </div>
     <div class="search-film__wrap">
       <div class="search-film__input">
-   <form id='form'>
+        <form id="form">
           <input
-          type="text"
-          name="search"
-          autocomplete="off"
-          placeholder="Поиск фильмов"
-          class="input__form"
-        />
-        <span class="input__btn">
-          <svg class="input__btn-icon" width="12" height="12">
-            <use href="./images/sprite.svg#search"></use>
-          </svg>
-        </span>
-   </form>
+            type="text"
+            name="search"
+            autocomplete="off"
+            placeholder="Поиск фильмов"
+            class="input__form"
+          />
+          <span class="input__btn">
+            <svg class="input__btn-icon" width="12" height="12">
+              <use href="./images/sprite.svg#search"></use>
+            </svg>
+          </span>
+        </form>
       </div>
     </div>
     <div class="search-film__notifications">
@@ -39,11 +39,9 @@
         Search result not successful. Enter the correct movie name
       </p>
     </div>
-    <div class="library__navigation">
-      <button id="watched-btn" type="button" class="btn btn-active btn-left visually-hidden">
-        Watched
-      </button>
-      <button id="queue-btn" type="button" class="btn btn-passive visually-hidden">Queue</button>
+    <div id="#libNav" class="library__navigation">
+      <button id="watched-btn" type="button" class="btn btn-left visually-hidden">watched</button>
+      <button id="queue-btn" type="button" class="btn btn-passive visually-hidden">queue</button>
     </div>
   </div>
 </header>

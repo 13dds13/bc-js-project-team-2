@@ -48,10 +48,12 @@ class StorageService {
         this.setDataToLocalStorage('watched', movieData);
         watchedBtn.textContent = 'remove from watched';
         this.btnColorSwitcher(watchedBtn);
+        localStorage.setItem('wasChanges', '1');
         if (isAlreadyInQueue) {
           this.removeMovieFromStorage('queue', movieData.id);
           queueBtn.textContent = 'add to queue';
           this.btnColorSwitcher(queueBtn);
+          localStorage.setItem('wasChanges', '1');
         };
         return;
       };
@@ -60,6 +62,7 @@ class StorageService {
         this.removeMovieFromStorage('watched', movieData.id);
         watchedBtn.textContent = 'add to watched';
         this.btnColorSwitcher(watchedBtn);
+        localStorage.setItem('wasChanges', '1');
         return;
       };
   };
@@ -70,10 +73,12 @@ class StorageService {
         this.setDataToLocalStorage('queue', movieData);
         queueBtn.textContent = 'remove from queue';
         this.btnColorSwitcher(queueBtn);
+        localStorage.setItem('wasChanges', '1');
         if (isAlreadyInWatched) {
           this.removeMovieFromStorage('watched', movieData.id);
           watchedBtn.textContent = 'add to watched';
           this.btnColorSwitcher(watchedBtn);
+          localStorage.setItem('wasChanges', '1');
         };
         return;
       };
@@ -82,6 +87,7 @@ class StorageService {
         this.removeMovieFromStorage('queue', movieData.id);
         queueBtn.textContent = 'add to queue';
         this.btnColorSwitcher(queueBtn);
+        localStorage.setItem('wasChanges', '1');
         return;
       };
     }
@@ -90,7 +96,7 @@ class StorageService {
   getCurrentMovieData() {
     const { titleYearId, img, vote, genre } = this.movieRefs;
     const genresId = [];
-    genre.forEach(item => genresId.push(Number(item.dataset.genreid)));
+    [...genre].map(item => genresId.push(Number(item.dataset.genreid)));
     const movieData = {
       id: Number(titleYearId.dataset.id),
       release_date: titleYearId.dataset.year,
