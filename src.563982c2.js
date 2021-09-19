@@ -63,4 +63,4 @@ var e,n=arguments[3];!function(t){"object"==typeof exports&&"undefined"!=typeof 
 },{"basiclightbox":"BNjD","../services/api":"nuEX"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/components/renderMoviesTrending"),require("./js/components/fetchMovieByInput.js"),require("./js/components/fetchMovieForModal"),require("./js/components/pagination"),require("./js/components/header.js"),require("./js/components/team.js"),require("./js/services/darcmodMine"),require("./js/components/btnUp"),require("./js/components/trailer");
 },{"./sass/main.scss":"clu1","./js/components/renderMoviesTrending":"JXTY","./js/components/fetchMovieByInput.js":"tDvy","./js/components/fetchMovieForModal":"U2uj","./js/components/pagination":"H1oe","./js/components/header.js":"NNYM","./js/components/team.js":"YkC3","./js/services/darcmodMine":"Fm3s","./js/components/btnUp":"sfjS","./js/components/trailer":"rsXv"}]},{},["Focm"], null)
-//# sourceMappingURL=/bc-js-project-team-2/src.d6c01a34.js.map
+//# sourceMappingURL=/bc-js-project-team-2/src.563982c2.js.map
