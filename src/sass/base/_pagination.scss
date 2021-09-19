@@ -129,14 +129,6 @@ div.tui-pagination .tui-is-selected,
   line-height: 1;
 }
 
-.tui-pagination .tui-prev {
-  margin-right: 10px;
-}
-
-.tui-pagination .tui-next {
-  margin-left: 10px;
-}
-
 .tui-pagination .tui-ico-first {
   width: 11px;
   height: 10px;
@@ -233,6 +225,40 @@ body .tui-pagination .tui-is-selected:hover {
   margin-top: 25px;
   margin-bottom: 50px;
 }
-.movi-card__about {
-  margin: 5px;
+
+a.tui-page-btn.tui-first,
+a.tui-page-btn.tui-last {
+  @include for-phone {
+    display: none;
+  }
+}
+a.tui-page-btn.tui-next-is-ellip.tui-last-child,
+a.tui-page-btn.tui-prev-is-ellip.tui-first-child {
+  @include for-phone {
+    display: none;
+  }
+  @include for-tablet {
+    display: inline;
+  }
+}
+.tui-pagination .tui-ico-ellip {
+  @include for-tablet {
+    margin-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+span.tui-page-btn.tui-is-disabled.tui-first {
+  @include for-phone {
+    display: none;
+  }
+}
+a.tui-page-btn.tui-next,
+a.tui-page-btn.tui-prev {
+  @include for-phone {
+    padding-top: 8px;
+    width: 40px;
+    height: 40px;
+    background-color: $footer-bgc;
+  }
 }
