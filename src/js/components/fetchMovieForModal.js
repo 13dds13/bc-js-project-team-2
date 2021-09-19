@@ -42,6 +42,7 @@ async function movieDataById(movieId) {
         const markup = renderMovieDataToModal(preparedMovieData);
         modalMarkupContainer.innerHTML = markup;
         backgroundBlur.classList.add('background-blur');
+        modal.classList.remove('is-hidden');
         modal.classList.remove('visually-hidden');
         modal.addEventListener('click', eventsOnModal);
         document.body.classList.add('body-modal-open');
@@ -55,7 +56,8 @@ function eventsOnModal(e) {
     if (e.target === e.currentTarget ||
         e.target.closest('button') === modalCloseBtn ||
         e.key === 'Escape') {
-        modal.classList.add('visually-hidden');
+        setTimeout(() => modal.classList.add('visually-hidden'), 200);
+        modal.classList.add('is-hidden');
         backgroundBlur.classList.remove('background-blur');
         modal.removeEventListener('click', eventsOnModal);
         document.body.classList.remove('body-modal-open');
