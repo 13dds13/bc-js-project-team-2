@@ -1,16 +1,9 @@
+import api from '../services/api';
+import renderMovieDataToModal from '../../templates/renderMovieForModal.hbs';
+import storageSetter from '../services/storageSetter';
+import { onWatched, onQueue } from './header';
 
-import api from '../services/api'
-import renderMovieDataToModal from '../../templates/renderMovieForModal.hbs'
-import storageSetter from '../services/storageSetter'
-import { onWatched, onQueue } from './header'
-
-const {
-    modalMarkupContainer,
-    galleryList,
-    modal,
-    modalCloseBtn,
-    backgroundBlur,
-} = api.refs;
+const { modalMarkupContainer, galleryList, modal, modalCloseBtn, backgroundBlur } = api.refs;
 
 const { queueBtn, watchedBtn } = storageSetter.refs;
 
@@ -19,17 +12,17 @@ galleryList.addEventListener('click', onMovieCardClick);
 storageSetter.addListenerToBtns();
 
 function onMovieCardClick(e) {
+  if (e.target === e.currentTarget) return;
 
-    if (e.target === e.currentTarget) return;
-
-    const movieId = Number(e.target.closest('li').dataset.movieid);
-    const {isAlreadyInWatched, isAlreadyInQueue} = storageSetter.checkUsersLibrary(movieId);
-    watchedBtn.textContent = isAlreadyInWatched ? 'remove from watched' : 'add to watched';
-    queueBtn.textContent = isAlreadyInQueue ? 'remove from queue' : 'add to queue';
-    isAlreadyInWatched && storageSetter.btnColorSetter(watchedBtn);
-    isAlreadyInQueue && storageSetter.btnColorSetter(queueBtn);
-    movieDataById(movieId);
-};
+  const movieId = Number(e.target.closest('li').dataset.movieid);
+  //   console.log('onMovieCardClick ~ movieId', movieId);
+  const { isAlreadyInWatched, isAlreadyInQueue } = storageSetter.checkUsersLibrary(movieId);
+  watchedBtn.textContent = isAlreadyInWatched ? 'remove from watched' : 'add to watched';
+  queueBtn.textContent = isAlreadyInQueue ? 'remove from queue' : 'add to queue';
+  isAlreadyInWatched && storageSetter.btnColorSetter(watchedBtn);
+  isAlreadyInQueue && storageSetter.btnColorSetter(queueBtn);
+  movieDataById(movieId);
+}
 
 async function movieDataById(movieId) {
     try {
@@ -50,7 +43,17 @@ async function movieDataById(movieId) {
     } catch (error) {
         console.log(error);
     }
-};
+    const markup = renderMovieDataToModal(preparedMovieData);
+    modalMarkupContainer.innerHTML = markup;
+    backgroundBlur.classList.add('background-blur');
+    modal.classList.remove('visually-hidden');
+    modal.addEventListener('click', eventsOnModal);
+    document.body.classList.add('body-modal-open');
+    window.addEventListener('keydown', eventsOnModal);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function eventsOnModal(e) {
     if (e.target === e.currentTarget ||

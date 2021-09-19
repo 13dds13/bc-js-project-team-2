@@ -113,3 +113,8 @@ class ApiService {
 const api = new ApiService();
 
 export default api;
+
+// if (result.results.length !== null && result.results[0].site === 'YouTube') {
+//   const trailerPlay = document.querySelector('#trailerdBtn');
+//   trailerButton.addEventListener('click');
+// }
