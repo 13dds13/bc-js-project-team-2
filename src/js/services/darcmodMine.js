@@ -9,10 +9,10 @@ export default class Darkmode {
     }
 
     const defaultOptions = {
-      bottom: '12px',
-      right: '12px',
+      bottom: '11px',
+      right: '11px',
       left: 'unset',
-      time: '0.4s',
+      time: '0.2s',
       mixColor: '#ebe5df',
       backgroundColor: '#fff',
       buttonColorDark: '#100f2c',
@@ -34,8 +34,8 @@ export default class Darkmode {
       }
 
       .darkmode-layer--button {
-        width: 2.9rem;
-        height: 2.9rem;
+        width: 4rem;
+        height: 4rem;
         border-radius: 50%;
         right: ${options.right};
         bottom: ${options.bottom};
@@ -62,9 +62,9 @@ export default class Darkmode {
       .darkmode-toggle {
         background: ${options.buttonColorDark};
         color: ${options.buttonColorLight};
-        width: 3rem;
-        height: 3rem;
-        z-index: 1;
+        width: 4rem;
+        height: 4rem;
+        z-index: 2;
         font-size: 40px;
         position: fixed;
         border-radius: 50%;

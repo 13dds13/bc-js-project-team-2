@@ -26,6 +26,7 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.4",
     "darkmode-js": "^1.5.7",
     "lodash.debounce": "^4.0.8",
     "notiflix": "^3.0.2",
