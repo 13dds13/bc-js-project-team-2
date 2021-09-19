@@ -1,3 +1,4 @@
+
 import api from '../services/api'
 import renderMovieDataToModal from '../../templates/renderMovieForModal.hbs'
 import storageSetter from '../services/storageSetter'
@@ -18,6 +19,7 @@ galleryList.addEventListener('click', onMovieCardClick);
 storageSetter.addListenerToBtns();
 
 function onMovieCardClick(e) {
+
     if (e.target === e.currentTarget) return;
 
     const movieId = Number(e.target.closest('li').dataset.movieid);
