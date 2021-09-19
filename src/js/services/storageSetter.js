@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 class StorageService {
   refs = {
     btnWrap: document.querySelector('#modalBtnWrap'),
@@ -49,11 +51,13 @@ class StorageService {
         watchedBtn.textContent = 'remove from watched';
         this.btnColorSwitcher(watchedBtn);
         localStorage.setItem('wasChanges', '1');
+        Notiflix.Notify.success('The movie was added to "Watched"');
         if (isAlreadyInQueue) {
           this.removeMovieFromStorage('queue', movieData.id);
           queueBtn.textContent = 'add to queue';
           this.btnColorSwitcher(queueBtn);
           localStorage.setItem('wasChanges', '1');
+          Notiflix.Notify.warning('Also the movie was removed from "Queue"');
         };
         return;
       };
@@ -63,6 +67,7 @@ class StorageService {
         watchedBtn.textContent = 'add to watched';
         this.btnColorSwitcher(watchedBtn);
         localStorage.setItem('wasChanges', '1');
+        Notiflix.Notify.failure('The movie was removed from "Watched"');
         return;
       };
   };
@@ -74,11 +79,13 @@ class StorageService {
         queueBtn.textContent = 'remove from queue';
         this.btnColorSwitcher(queueBtn);
         localStorage.setItem('wasChanges', '1');
+        Notiflix.Notify.success('The movie was added to "Queue"');
         if (isAlreadyInWatched) {
           this.removeMovieFromStorage('watched', movieData.id);
           watchedBtn.textContent = 'add to watched';
           this.btnColorSwitcher(watchedBtn);
           localStorage.setItem('wasChanges', '1');
+          Notiflix.Notify.warning('Also the movie was removed from "Watched"');
         };
         return;
       };
@@ -88,6 +95,7 @@ class StorageService {
         queueBtn.textContent = 'add to queue';
         this.btnColorSwitcher(queueBtn);
         localStorage.setItem('wasChanges', '1');
+        Notiflix.Notify.failure('The movie was removed from "Queue"');
         return;
       };
     }
@@ -145,5 +153,16 @@ class StorageService {
     queueBtn.classList.remove('modal__btn_accent-style');
   }
 }
+
+Notiflix.Notify.init({
+  width: '220px',
+  distance: '48px',
+  fontSize: '12px',
+  useIcon: false,
+  // closeButton: true,
+  timeout: 2500,
+  position: 'center-top',
+  clickToClose: true,
+});
 
 export default new StorageService;
