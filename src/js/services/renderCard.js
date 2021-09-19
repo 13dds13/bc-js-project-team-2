@@ -7,12 +7,15 @@ export default async function dataPrepareToRender(data, genres) {
     const fullPath = `https://image.tmdb.org/t/p/w500/${poster_path}`;
     const poster = poster_path ? fullPath : noImage;
 
+    const shortTitle = title.length > 36 ? `${title.slice(0, 35)} ...` : title;
+
     const date = new Date(release_date);
+    
 
     const dataToRender = {
       poster_path: poster,
       genre_ids,
-      title,
+      title: shortTitle,
       vote_average,
       release_date: date.getFullYear(),
       id,
@@ -25,6 +28,7 @@ export default async function dataPrepareToRender(data, genres) {
     const newArray = array.slice(0, 2).join(', ');
 
     dataToRender.genre_ids = newArray;
+
     return dataToRender;
   });
 }
