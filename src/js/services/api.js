@@ -13,6 +13,7 @@ class ApiService {
   constructor() {
     this._page = 1;
     this.refs = {
+      backgroundBlur: document.querySelector('#backgroundBlur'),
       modalMarkupContainer: document.querySelector('.js-movie-data'),
       galleryList: document.querySelector('#gallary-list'),
       modal: document.querySelector('.backdrop'),

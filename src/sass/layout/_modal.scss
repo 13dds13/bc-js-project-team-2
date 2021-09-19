@@ -1,44 +1,43 @@
 .backdrop {
   position: fixed;
-  height: 110%;
+  height: 100%;
   width: 100%;
-  overflow-y: scroll;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
 
-  background-color: rgba(0, 0, 0, 0.5);
-
-  @include for-desktop {
-    overflow-y: inherit;
-  }
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
-.body_modal-open {
+.background-blur {
+  filter: blur(10px);
+}
+
+.body-modal-open {
   overflow: hidden;
-  // filter: blur(5px);
 }
 
 .modal-for-movie {
   position: fixed;
+  overflow-y: scroll;
+  max-height: 95%;
   width: 280px;
-  top: 20px;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, 0);
-  padding: 48px 20px;
+  transform: translate(-50%, -50%);
+  padding: 48px 20px 32px;
   background-color: $main-bg-text-color;
+  border-radius: 5px;
 
   @include for-tablet {
-    top: 230px;
     width: 618px;
     padding: 42px 29px;
   }
 
   @include for-desktop {
-    top: 100px;
     width: 882px;
   }
 }
+
 .modal__vote {
   display: inline-block;
   height: 16px;
@@ -116,10 +115,16 @@
 
 .modal__about {
   margin-bottom: 10px;
+  @include for-desktop {
+    font-size: 16px;
+  }
 }
 
 .modal__desc {
   line-height: 1.67;
+  @include for-desktop {
+    font-size: 14px;
+  }
 }
 
 .modal__btn-wrap {
@@ -145,6 +150,16 @@
     width: 125px;
   }
 
+  &:hover {
+    border: 2px solid $accent-color;
+    color: $accent-color;
+    background-color: #ff6b013d;
+  }
+
+  // &:focus {
+  //   border: 4px solid $accent-color;
+  // }
+
   &_accent-style {
     background-color: $accent-color;
     color: $main-bg-text-color;
@@ -156,7 +171,7 @@
   margin-right: 12px;
   @include for-tablet {
     margin-left: auto;
-    margin-right: 30px;
+    margin-right: 16px;
   }
 }
 
