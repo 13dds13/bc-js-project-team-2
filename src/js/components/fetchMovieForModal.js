@@ -25,16 +25,23 @@ function onMovieCardClick(e) {
 }
 
 async function movieDataById(movieId) {
-  try {
-    const movieData = await api.fetchMovieForModal(movieId);
-    const preparedMovieData = {
-      ...movieData,
-      poster_path: `https://image.tmdb.org/t/p/w500${movieData.poster_path}`,
-    };
-    if (!movieData.poster_path) {
-      const imgPlug =
-        'https://imgp.whaleshares.io/pimgp/a/einstei1/p/image-not-found-shitpostfriday/0x0/https://img.whaleshares.io/wls-img/einstei1/d765e65f432e7e6f0d062616d19364ecdc5631da.png';
-      preparedMovieData.poster_path = imgPlug;
+    try {
+        const movieData = await api.fetchMovieForModal(movieId);
+        const preparedMovieData = { ...movieData, poster_path:`https://image.tmdb.org/t/p/w500${movieData.poster_path}` };
+        if (!movieData.poster_path) {
+            const imgPlug = 'https://imgp.whaleshares.io/pimgp/a/einstei1/p/image-not-found-shitpostfriday/0x0/https://img.whaleshares.io/wls-img/einstei1/d765e65f432e7e6f0d062616d19364ecdc5631da.png';
+            preparedMovieData.poster_path = imgPlug;
+        }
+        const markup = renderMovieDataToModal(preparedMovieData);
+        modalMarkupContainer.innerHTML = markup;
+        backgroundBlur.classList.add('background-blur');
+        modal.classList.remove('is-hidden');
+        modal.classList.remove('visually-hidden');
+        modal.addEventListener('click', eventsOnModal);
+        document.body.classList.add('body-modal-open');
+        window.addEventListener('keydown', eventsOnModal);
+    } catch (error) {
+        console.log(error);
     }
     const markup = renderMovieDataToModal(preparedMovieData);
     modalMarkupContainer.innerHTML = markup;
@@ -49,29 +56,28 @@ async function movieDataById(movieId) {
 }
 
 function eventsOnModal(e) {
-  if (
-    e.target === e.currentTarget ||
-    e.target.closest('button') === modalCloseBtn ||
-    e.key === 'Escape'
-  ) {
-    modal.classList.add('visually-hidden');
-    backgroundBlur.classList.remove('background-blur');
-    modal.removeEventListener('click', eventsOnModal);
-    document.body.classList.remove('body-modal-open');
-    window.removeEventListener('keydown', eventsOnModal);
-    storageSetter.removeBtnColor();
-    if (document.querySelector('#watched-btn.btn-active')) {
-      const wasChanges = localStorage.getItem('wasChanges');
-      if (wasChanges) {
-        onWatched();
-      }
-    }
-    if (document.querySelector('#queue-btn.btn-active')) {
-      const wasChanges = localStorage.getItem('wasChanges');
-      if (wasChanges) {
-        onQueue();
-      }
-    }
-    localStorage.removeItem('wasChanges');
-  }
-}
+    if (e.target === e.currentTarget ||
+        e.target.closest('button') === modalCloseBtn ||
+        e.key === 'Escape') {
+        setTimeout(() => modal.classList.add('visually-hidden'), 200);
+        modal.classList.add('is-hidden');
+        backgroundBlur.classList.remove('background-blur');
+        modal.removeEventListener('click', eventsOnModal);
+        document.body.classList.remove('body-modal-open');
+        window.removeEventListener('keydown', eventsOnModal);
+        storageSetter.removeBtnColor();
+        if (document.querySelector('#watched-btn.btn-active')) {
+            const wasChanges = localStorage.getItem('wasChanges');
+            if (wasChanges) {
+                onWatched();
+            };
+        };
+        if (document.querySelector('#queue-btn.btn-active')) {
+            const wasChanges = localStorage.getItem('wasChanges');
+            if (wasChanges) {
+                onQueue();
+            };
+        };
+        localStorage.removeItem('wasChanges');
+    };
+};

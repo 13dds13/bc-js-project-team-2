@@ -1,4 +1,4 @@
-header {
+.header {
   margin: 0 auto;
   background-position: center;
   background-size: cover;
@@ -207,29 +207,26 @@ header {
 }
 
 .btn {
-  width: 136px;
+  width: 134px;
   height: 44px;
   border-radius: 5px;
   color: $main-bg-text-color;
   text-transform: uppercase;
   cursor: pointer;
-  transition: box-shadow $duration-main $timing-function-main;
+  transition: color, background-color;
+  transition-duration: $duration-main;
+  transition-timing-function: $timing-function-main;
 
-  &:hover,
-  &:focus {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  &:hover {
+    border: 2px solid $accent-color;
+    color: $accent-color;
+    background-color: #ff6b013d;
   }
 }
 
 .btn-active {
   background-color: $accent-color;
-  border: none;
-  transition: background-color $duration-main $timing-function-main;
-
-  &:hover,
-  &:focus {
-    background-color: #e45f00;
-  }
+  border: 2px solid $accent-color;
 }
 
 .btn-left {

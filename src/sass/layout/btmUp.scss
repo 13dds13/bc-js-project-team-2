@@ -15,15 +15,15 @@ h1 {
   width: 20px;
   height: 20px;
   font-size: 25px;
-  line-height: 40px;
+  line-height: 37px;
 }
 .back_to_top {
   position: fixed;
-  bottom: 100px;
-  right: 14px;
+  bottom: 80px;
+  right: 11px;
   z-index: 9999;
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   text-align: center;
   line-height: 30px;
   background: $accent-color;
@@ -35,7 +35,8 @@ h1 {
 }
 
 .back_to_top:hover {
-  background: #e9ebec;
+  background: #ff6b01de;
+  text-decoration: none;
 }
 
 .back_to_top-show {
