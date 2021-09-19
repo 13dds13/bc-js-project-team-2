@@ -57,7 +57,7 @@ async function onWatched(e) {
   activePassiveHeaderBtn(watchedBtn, queueBtn);
 
   if (localStorage.watched === undefined || localStorage.watched === []) {
-    classAdd('visually-hidden', divAnim);
+    classRemove('visually-hidden', divAnim);
     galleryList.innerHTML = '';
   }
   if (localStorage.watched !== undefined) {
