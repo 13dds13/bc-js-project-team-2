@@ -1,4 +1,5 @@
-import Notiflix from 'notiflix';
+import { onWatched as renderWatchedLibPage, onQueue as renderQueueLibPage } from '../components/header'
+import Notiflix from './modalNotify'
 
 class StorageService {
   refs = {
@@ -19,6 +20,14 @@ class StorageService {
       genre: document.querySelectorAll('.modal__stat-genre'),
     };
     this.movieRefs = refs;
+  }
+
+  getLibBtnRefs() {
+    const refs = {
+      watchedBtnLib: document.querySelector('#watched-btn.btn-active'),
+      queueBtnLib: document.querySelector('#queue-btn.btn-active'),
+    };
+    return refs;
   }
 
   getDatafromStorage(type) {
@@ -50,13 +59,13 @@ class StorageService {
         this.setDataToLocalStorage('watched', movieData);
         watchedBtn.textContent = 'remove from watched';
         this.btnColorSwitcher(watchedBtn);
-        localStorage.setItem('wasChanges', '1');
+        this.changesInStorage('set');
         Notiflix.Notify.success('The movie was added to "Watched"');
         if (isAlreadyInQueue) {
           this.removeMovieFromStorage('queue', movieData.id);
           queueBtn.textContent = 'add to queue';
           this.btnColorSwitcher(queueBtn);
-          localStorage.setItem('wasChanges', '1');
+          this.changesInStorage('set');
           Notiflix.Notify.warning('Also the movie was removed from "Queue"');
         };
         return;
@@ -66,7 +75,7 @@ class StorageService {
         this.removeMovieFromStorage('watched', movieData.id);
         watchedBtn.textContent = 'add to watched';
         this.btnColorSwitcher(watchedBtn);
-        localStorage.setItem('wasChanges', '1');
+        this.changesInStorage('set');
         Notiflix.Notify.failure('The movie was removed from "Watched"');
         return;
       };
@@ -78,13 +87,13 @@ class StorageService {
         this.setDataToLocalStorage('queue', movieData);
         queueBtn.textContent = 'remove from queue';
         this.btnColorSwitcher(queueBtn);
-        localStorage.setItem('wasChanges', '1');
+        this.changesInStorage('set');
         Notiflix.Notify.success('The movie was added to "Queue"');
         if (isAlreadyInWatched) {
           this.removeMovieFromStorage('watched', movieData.id);
           watchedBtn.textContent = 'add to watched';
           this.btnColorSwitcher(watchedBtn);
-          localStorage.setItem('wasChanges', '1');
+          this.changesInStorage('set');
           Notiflix.Notify.warning('Also the movie was removed from "Watched"');
         };
         return;
@@ -94,12 +103,20 @@ class StorageService {
         this.removeMovieFromStorage('queue', movieData.id);
         queueBtn.textContent = 'add to queue';
         this.btnColorSwitcher(queueBtn);
-        localStorage.setItem('wasChanges', '1');
+        this.changesInStorage('set');
         Notiflix.Notify.failure('The movie was removed from "Queue"');
         return;
       };
     }
-}
+  }
+  
+  btnContentSetter(inWatched, inQueue) {
+    const { watchedBtn, queueBtn } = this.refs;
+    watchedBtn.textContent = inWatched ? 'remove from watched' : 'add to watched';
+    queueBtn.textContent = inQueue ? 'remove from queue' : 'add to queue';
+    inWatched && this.btnColorSetter(watchedBtn);
+    inQueue && this.btnColorSetter(queueBtn);
+  };
 
   getCurrentMovieData() {
     const { titleYearId, img, vote, genre } = this.movieRefs;
@@ -121,7 +138,7 @@ class StorageService {
     const localDataQueue = this.getDatafromStorage('queue');
     const isAlreadyInWatched = localDataWatched.some(item => item.id === movieId);
     const isAlreadyInQueue = localDataQueue.some(item => item.id === movieId);
-  return {isAlreadyInWatched, isAlreadyInQueue};
+    return { isAlreadyInWatched, isAlreadyInQueue };
   }
 
   setDataToLocalStorage(type, data) {
@@ -152,17 +169,34 @@ class StorageService {
     watchedBtn.classList.remove('modal__btn_accent-style');
     queueBtn.classList.remove('modal__btn_accent-style');
   }
+
+  changesInStorage(action) {
+  if (action === 'remove') {
+    localStorage.removeItem('wasChanges');
+    };
+
+  if (action === 'set') {
+    localStorage.setItem('wasChanges', '1');
+    };
+  }
+
+  ifNeedRender() {
+    const { watchedBtnLib, queueBtnLib } = this.getLibBtnRefs();
+
+    if (!watchedBtnLib && !queueBtnLib) return;
+    
+    if (watchedBtnLib) {
+      this.checkChangesInLib() && renderWatchedLibPage();
+      };
+
+    if (queueBtnLib) {
+      this.checkChangesInLib() && renderQueueLibPage();
+      };
 }
 
-Notiflix.Notify.init({
-  width: '220px',
-  distance: '48px',
-  fontSize: '12px',
-  useIcon: false,
-  // closeButton: true,
-  timeout: 2500,
-  position: 'center-top',
-  clickToClose: true,
-});
+  checkChangesInLib() {
+    return localStorage.getItem('wasChanges');
+  }
+}
 
 export default new StorageService;

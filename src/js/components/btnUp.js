@@ -1,5 +1,3 @@
-import api from "../services/api";
-
 (function () {
   function trackScroll() {
     const scrolled = window.pageYOffset;

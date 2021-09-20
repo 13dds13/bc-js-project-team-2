@@ -14,11 +14,7 @@ class ApiService {
   constructor() {
     this._page = 1;
     this.refs = {
-      backgroundBlur: document.querySelector('#backgroundBlur'),
-      modalMarkupContainer: document.querySelector('.js-movie-data'),
       galleryList: document.querySelector('#gallary-list'),
-      modal: document.querySelector('.backdrop'),
-      modalCloseBtn: document.querySelector('.modal__btn-close'),
       inputRef: document.querySelector('.input__form'),
       form: document.querySelector('#form'),
       pagination: document.querySelector('#tui-pagination-container'),
