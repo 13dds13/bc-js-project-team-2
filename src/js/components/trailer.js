@@ -26,15 +26,16 @@ async function onShowTrailer(id) {
   `);
   // const onBasicLightbox = document.querySelector('.basicLightbox');
   // onBasicLightbox.classList.add('z-index');
-  // document.body.addEventListener('click', closePl);
-  // function closePl(e) {
-  //   console.log(e.target);
-  //   // api.refs.galleryList.classList.remove('visually-hidden');
-  //   // api.refs.modal.classList.remove('visually-hidden');
-  // }
-  // document.body.classList.remove('body-modal-open');
-  // api.refs.galleryList.classList.add('visually-hidden');
-  // api.refs.modal.classList.add('visually-hidden');
+  document.body.addEventListener('click', closePl);
+  function closePl(e) {
+    console.log(e.target);
+    // location.reload();
+    api.refs.galleryList.classList.remove('visually-hidden');
+    api.refs.modal.classList.remove('visually-hidden');
+  }
+  document.body.classList.remove('body-modal-open');
+  api.refs.galleryList.classList.add('visually-hidden');
+  api.refs.modal.classList.add('visually-hidden');
   instance.show();
 }
 
