@@ -25,10 +25,8 @@ async function onInput(e) {
     const { results: data } = allData;
     paginationItems(allData.total_results, inputText);
     if (data.length === 0) {
-      console.log(123)
       divAnim.classList.remove('visually-hidden');
       Notiflix.Notify.failure('Search result not successful. Enter the correct movie name and ');
-      form.reset();
       pagination.textContent = '';
     }
     await cardMarkup(data, genres);
