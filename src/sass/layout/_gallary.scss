@@ -1,3 +1,8 @@
+.movi-card:nth-last-child(-n + 2) {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .movi-card {
   border-radius: 5px;
   background-color: $main-bg-text-color;
@@ -11,23 +16,26 @@
   margin-bottom: 20px;
   margin-left: 30px;
   @include for-tablet {
+    width: 280px;
+    height: 440px;
     flex-basis: calc((100% / 2) - 30px);
     margin-bottom: 30px;
   }
   @include for-desktop {
+    width: 280px;
+    height: 440px;
     margin-bottom: 30px;
     flex-basis: calc((100% / 3) - 30px);
   }
   &__picture {
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 5px 5px 0 0;
     height: 398px;
     width: 280px;
     @include for-tablet {
-      width: 294px;
+      width: 100%;
     }
     @include for-desktop {
-      width: 274px;
+      width: 100%;
     }
   }
   &__title {
@@ -59,6 +67,12 @@
   align-items: baseline;
   margin-top: 20px;
   margin-left: -30px;
+  @include for-tablet {
+    margin-top: 60px;
+  }
+  @include for-desktop {
+    margin-top: 60px;
+  }
 }
 .page_404 {
   padding: 40px 0;
@@ -98,4 +112,9 @@
   transform: scale(1.04);
   transition: 500ms;
   cursor: pointer;
+}
+.movi-card__about {
+  margin-top: 6px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
