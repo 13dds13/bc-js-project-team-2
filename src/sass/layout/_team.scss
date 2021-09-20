@@ -12,7 +12,9 @@
   background: #f5f4fa;
   position: fixed;
   width: 90%;
-  height: 90%;
+  @media screen and (max-height: 865px) {
+    height: 90%;
+  }
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
